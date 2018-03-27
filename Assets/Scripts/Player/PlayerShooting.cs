@@ -30,6 +30,8 @@ public class PlayerShooting : MonoBehaviour {
         playerHealt = GetComponentInParent<PlayerHealth>();
     }
 
+
+
     private void Update()
     {
         timer += Time.deltaTime;
@@ -85,6 +87,8 @@ public class PlayerShooting : MonoBehaviour {
             gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
         }
     }
+
+	 
 
 
 

@@ -4,8 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ManagerScene : MonoBehaviour {
 
-	public void ChangeScene (string cena){
+	string nomeCena;
 
-		SceneManager.LoadScene (cena);
+	public void ChangeScene (string cena){
+		nomeCena = cena;
+		StartCoroutine (AbrirCena());
 	}
+      
+	private IEnumerator AbrirCena(){
+
+		yield return new WaitForSeconds (0.5f);
+		SceneManager.LoadScene (nomeCena);
+
+	}
+
+
 }
