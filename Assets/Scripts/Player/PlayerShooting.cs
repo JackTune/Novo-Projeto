@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour {
-
+    //Variables Gun
     public int damagePerShot = 20;
     public float TimeBetweenBullets = 0.15f;
     public float range = 100f;
+
+    PlayerHealth playerHealt;
 
     float timer;
     Ray shootRay;
@@ -25,6 +27,7 @@ public class PlayerShooting : MonoBehaviour {
         gunLine = GetComponent<LineRenderer>();
       //  gunAudio = GetComponent<AudioSource>();
         gunLight = GetComponent<Light>();
+        playerHealt = GetComponentInParent<PlayerHealth>();
     }
 
     private void Update()
@@ -32,7 +35,7 @@ public class PlayerShooting : MonoBehaviour {
         timer += Time.deltaTime;
 
 
-        if(Input.GetButton ("Fire1") && timer >= TimeBetweenBullets)
+        if(Input.GetButton ("Fire1") && timer >= TimeBetweenBullets && playerHealt.currentHealth > 0)
         {
             Shoot();
         }

@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour {
 
     //Vida do Inimigo
-    public int startingHealth = 100;
-    public int currentHealth;
+    public float startingHealth = 100;
+    public float currentHealth;
 
     //Velocidade no qual o inimigo desaparecerá
     public float sinkSpeed = 2.5f;
@@ -14,11 +15,14 @@ public class EnemyHealth : MonoBehaviour {
     //Pontos que o inimigo dá
     public int scoreValue = 10;
 
+    //Animações e Audios
+    // public AudioClip deathClip;
+    //Animator anim;
+    // AudioSource enemyAudio;
 
-   //Animações e Audios
-   // public AudioClip deathClip;
-   //Animator anim;
-   // AudioSource enemyAudio;
+
+    //Imagem do Damage
+    public Image damageImage;
 
     //Particulas e Colliders
     ParticleSystem hitParticle;
@@ -40,11 +44,13 @@ public class EnemyHealth : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update () { 
+
         if (isSinking)
         {
             transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
         }
+
 	}
 
 
@@ -59,7 +65,8 @@ public class EnemyHealth : MonoBehaviour {
        // enemyAudio.Play();
 
         currentHealth -= amount;
-       
+
+        damageImage.fillAmount = currentHealth / startingHealth;
 
         //Animação da particula colidindo
         hitParticle.transform.position = hitPoint;
@@ -92,7 +99,7 @@ public class EnemyHealth : MonoBehaviour {
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         isSinking = true;
-		ScoreManager.score += scoreValue;
+        ScoreManager.score += scoreValue;
         Destroy(gameObject, 2f);
     }
 }
