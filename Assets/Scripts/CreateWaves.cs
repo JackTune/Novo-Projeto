@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreateWaves : MonoBehaviour {
 
     //Estágios da Wave: Spawnando, Esperando, ou Contando
-    public enum SpawnState { SPAWNING, WAITING, COUNTING };
+    public enum SpawnState { SPAWNING, WAITING, COUNTING, FINISH };
 
 
     //Classe Wave
@@ -69,7 +69,7 @@ public class CreateWaves : MonoBehaviour {
 
         if(waveCountDown <= 0)
         {
-            if(state != SpawnState.SPAWNING)
+            if(state != SpawnState.SPAWNING && state != SpawnState.FINISH)
             {
                 //Começar spawnando a wave
                 StartCoroutine(SpawnWave(waves[nextWave]));
@@ -97,6 +97,7 @@ public class CreateWaves : MonoBehaviour {
             //TODAS WAVES COMPLETAS / Estágio Completado
             nextWave = 0;
             finish = true;
+            state = SpawnState.FINISH;
             print("Todas waves completadas");
         }
         else
