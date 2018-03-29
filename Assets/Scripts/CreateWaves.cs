@@ -34,6 +34,9 @@ public class CreateWaves : MonoBehaviour {
     [System.NonSerialized]
     public int countTempo;
 
+    //Animations
+    
+
     
 
     private float searchCountDown = 1f;
@@ -45,11 +48,13 @@ public class CreateWaves : MonoBehaviour {
         waveCountDown = timeBetweenWaves;
         numberWave = nextWave;
         countTempo = (int)waveCountDown;
+        
 
     }
 
     private void Update()
     {
+        
         if(state == SpawnState.WAITING)
         {
             //Check if os inimigos ainda estão vivos
@@ -62,6 +67,7 @@ public class CreateWaves : MonoBehaviour {
             }
             else
             {
+                WavesDetails.waveComplete = false;
                 return;
             }
         }
@@ -88,6 +94,8 @@ public class CreateWaves : MonoBehaviour {
     void WaveComplete()
     {
         Debug.Log("Wave Completada");
+        // animTextWaveComplete.SetBool("WaveComplete", true);
+        WavesDetails.waveComplete = true;
 
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
@@ -98,6 +106,7 @@ public class CreateWaves : MonoBehaviour {
             nextWave = 0;
             finish = true;
             state = SpawnState.FINISH;
+            WavesDetails.waveComplete = false;
             print("Todas waves completadas");
         }
         else
