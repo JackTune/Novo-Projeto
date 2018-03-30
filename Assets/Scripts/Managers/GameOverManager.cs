@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour {
 	public PlayerHealth playerHealth;
 	public float restartDelay = 5f;
     public GameObject desativarQntWaves;
     public GameObject desativarTimeProxWaves;
+    public Button restart;
+
 
 	Animator anim;
 	float restartTime;
@@ -21,9 +24,13 @@ public class GameOverManager : MonoBehaviour {
 	void Update () {
 		if (playerHealth.currentHealth <= 0) {
 			anim.SetTrigger ("GameOver");
-            desativarQntWaves.SetActive(false);
             desativarTimeProxWaves.SetActive(false);
             restartTime += Time.deltaTime;
+            restart.interactable = true;
 		}
+        else
+        {
+            restart.interactable = false;
+        }
 	}
 }

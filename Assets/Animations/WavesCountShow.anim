@@ -52,12 +52,12 @@ AnimationClip:
       - serializedVersion: 2
         time: 4.8333335
         value: 255.862
-        inSlope: 515.4097
-        outSlope: 515.4097
+        inSlope: 525.2458
+        outSlope: 525.2458
         tangentMode: 136
       - serializedVersion: 2
         time: 5.1833334
-        value: 600
+        value: 610
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -141,12 +141,12 @@ AnimationClip:
       - serializedVersion: 2
         time: 4.8333335
         value: 255.862
-        inSlope: 515.4097
-        outSlope: 515.4097
+        inSlope: 525.2458
+        outSlope: 525.2458
         tangentMode: 136
       - serializedVersion: 2
         time: 5.1833334
-        value: 600
+        value: 610
         inSlope: 0
         outSlope: 0
         tangentMode: 136

@@ -113,7 +113,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: fecc996eebd4d00498efc766f3c4c34e, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: c3737cf7a7a174c4db91aa948361944b, type: 2}
 --- !u!1 &83954880
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,15 +346,15 @@ MonoBehaviour:
   - nome: Wave 1
     enemies:
     - {fileID: 4340926693749554, guid: 20da882207b7ddc4d973d35ee5153e29, type: 2}
-    count: 3
-    rate: 1
+    count: 60
+    rate: 2
   - nome: Wave 2
     enemies:
     - {fileID: 4340926693749554, guid: 20da882207b7ddc4d973d35ee5153e29, type: 2}
     - {fileID: 4500581387510108, guid: cd0b747a8b49af54c82f32c71a143db8, type: 2}
-    count: 5
-    rate: 0.5
-  timeBetweenWaves: 10
+    count: 40
+    rate: 2
+  timeBetweenWaves: 5
   spawnPoints:
   - {fileID: 2007688118}
   - {fileID: 962278624}
@@ -1214,16 +1214,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114946561996235312, guid: 3879c98ca503e4349bc1ff8635b10277,
-        type: 2}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 549193598}
     - target: {fileID: 114736693547036276, guid: 3879c98ca503e4349bc1ff8635b10277,
         type: 2}
       propertyPath: wave
       value: 
       objectReference: {fileID: 493578049}
+    - target: {fileID: 114946561996235312, guid: 3879c98ca503e4349bc1ff8635b10277,
+        type: 2}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 549193598}
     - target: {fileID: 224729111492463412, guid: 3879c98ca503e4349bc1ff8635b10277,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -1233,11 +1233,6 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224385183964119896, guid: 3879c98ca503e4349bc1ff8635b10277,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -600
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3879c98ca503e4349bc1ff8635b10277, type: 2}

@@ -20,7 +20,8 @@ public class WavesDetails : MonoBehaviour {
         qntWaves.text = "Waves: "+ (wave.numberWave + 1) + "/" + wave.waves.Length;
         timeProxWave.text ="Prox Wave: " + wave.timeBetweenWaves;
         animTextWaveComplete.SetBool("WaveComplete", true);
-        //animTextWaveComplete.SetTrigger("WaveComplete");
+        
+        
     }
 	
 	// Update is called once per frame
@@ -42,6 +43,11 @@ public class WavesDetails : MonoBehaviour {
             animTextWaveComplete.SetBool("WaveComplete", false);
         }
 
+        if (wave.finish)
+        {
+            qntWaves.text = "Level Completado";
+            animTextWaveComplete.SetBool("WaveComplete", true);
+        }
 
 
 

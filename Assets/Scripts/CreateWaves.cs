@@ -94,7 +94,6 @@ public class CreateWaves : MonoBehaviour {
     void WaveComplete()
     {
         Debug.Log("Wave Completada");
-        // animTextWaveComplete.SetBool("WaveComplete", true);
         WavesDetails.waveComplete = true;
 
         state = SpawnState.COUNTING;
@@ -148,7 +147,7 @@ public class CreateWaves : MonoBehaviour {
         {
             int spawnRandomIndex = Random.Range(0, wave.enemies.Length);
             SpawnEnemy(wave.enemies[spawnRandomIndex]);
-            yield return new WaitForSeconds(1f / wave.rate);
+            yield return new WaitForSeconds(1f * wave.rate);
         }
 
 
