@@ -7,11 +7,14 @@ public class WavesDetails : MonoBehaviour {
 
     public Text qntWaves;
     public Text timeProxWave;
+    public Text enemiesAlive;
     public CreateWaves wave;
     int waveAnterior = 0;
     int time;
     public Animator animTextWaveComplete;
     public static bool waveComplete = true;
+    public static int countEnemies;
+    public static bool isDeadEnemy;
 
 
     // Use this for initialization
@@ -20,16 +23,24 @@ public class WavesDetails : MonoBehaviour {
         qntWaves.text = "Waves: "+ (wave.numberWave + 1) + "/" + wave.waves.Length;
         timeProxWave.text ="Prox Wave: " + wave.timeBetweenWaves;
         animTextWaveComplete.SetBool("WaveComplete", true);
-        
+        countEnemies = wave.waves[wave.numberWave].count;
+        enemiesAlive.text = "Inimigos Vivos: " + wave.waves[wave.numberWave].count + "/" + wave.waves[wave.numberWave].count;
         
     }
 	
 	// Update is called once per frame
 	void Update () {
-       
-        //Texto para "wavesAtual/QntInteiradeWaves"
-		if(wave.numberWave > waveAnterior)
+
+        if (isDeadEnemy)
         {
+            enemiesAlive.text = "Inimigos Vivos: " + countEnemies + "/" + wave.waves[wave.numberWave].count;
+        }
+
+
+        //Texto para "wavesAtual/QntInteiradeWaves"
+        if (wave.numberWave > waveAnterior)
+        {
+            countEnemies = wave.waves[wave.numberWave].count;
             qntWaves.text = "Waves: " + (wave.numberWave + 1) + "/" + wave.waves.Length;
             waveAnterior++;
         }
@@ -37,6 +48,7 @@ public class WavesDetails : MonoBehaviour {
         if (waveComplete)
         {
             animTextWaveComplete.SetBool("WaveComplete", true);
+           
         }
         else
         {

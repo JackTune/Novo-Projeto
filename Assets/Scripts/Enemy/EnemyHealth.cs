@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour {
     //Vida do Inimigo
     public float startingHealth = 100;
     public float currentHealth;
+    float tempoDano;
 
     //Velocidade no qual o inimigo desaparecerá
     public float sinkSpeed = 2.5f;
@@ -21,8 +22,9 @@ public class EnemyHealth : MonoBehaviour {
     // AudioSource enemyAudio;
 
 
-    //Imagem do Damage
+    //Levar dano
     public Image damageImage;
+    public GameObject damageGO;
 
     //Particulas e Colliders
     ParticleSystem hitParticle;
@@ -31,6 +33,7 @@ public class EnemyHealth : MonoBehaviour {
     //Booleanos
     bool isDead;
     bool isSinking;
+    bool enemyTakeDamage;
 
     // Use this for initialization
      void Awake()
@@ -39,7 +42,7 @@ public class EnemyHealth : MonoBehaviour {
        // enemyAudio = GetComponent<AudioSource>();
         hitParticle = GetComponentInChildren<ParticleSystem>();
         capsuleCollider = GetComponent<CapsuleCollider>();
-
+        damageGO.SetActive(false);
         currentHealth = startingHealth;
     }
 
@@ -51,22 +54,39 @@ public class EnemyHealth : MonoBehaviour {
             transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
         }
 
-	}
+
+        //Enemy esconde a life bar
+        if (enemyTakeDamage)
+        {
+            tempoDano += Time.deltaTime;
+        }
+
+        if(tempoDano > 2f)
+        {
+            tempoDano = 0;
+            enemyTakeDamage = false;
+            damageGO.SetActive(false);
+        }
+
+    }
 
 
     //Inimigo leva dano
     public void TakeDamege(int amount, Vector3 hitPoint)
     {
+        enemyTakeDamage = true;
+        damageGO.SetActive(true);
+
         if (isDead)
         {
             return;
         }
 
-       // enemyAudio.Play();
-
+        
         currentHealth -= amount;
-
         damageImage.fillAmount = currentHealth / startingHealth;
+
+        // enemyAudio.Play();
 
         //Animação da particula colidindo
         hitParticle.transform.position = hitPoint;
@@ -85,6 +105,10 @@ public class EnemyHealth : MonoBehaviour {
         isDead = true;
 
         capsuleCollider.isTrigger = true;
+
+        //WavesDetails
+        WavesDetails.countEnemies--;
+        WavesDetails.isDeadEnemy = true;
 
         //anim.SetTrigger ("Dead");
 

@@ -13,7 +13,6 @@ public class CreateWaves : MonoBehaviour {
     public class Wave
     {
         public string nome;
-        //public Transform enemy;
         public Transform[] enemies;
         public int count;
         public float rate;
@@ -48,7 +47,6 @@ public class CreateWaves : MonoBehaviour {
         waveCountDown = timeBetweenWaves;
         numberWave = nextWave;
         countTempo = (int)waveCountDown;
-        
 
     }
 

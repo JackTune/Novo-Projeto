@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class GameOverManager : MonoBehaviour {
 	public PlayerHealth playerHealth;
 	public float restartDelay = 5f;
-    public GameObject desativarQntWaves;
     public GameObject desativarTimeProxWaves;
     public Button restart;
 
