@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class WavesDetails : MonoBehaviour {
 
@@ -16,9 +15,6 @@ public class WavesDetails : MonoBehaviour {
     public static bool waveComplete = true;
     public static int countEnemies;
     public static bool isDeadEnemy;
-    
-    
-    
 
 
     // Use this for initialization
@@ -29,7 +25,7 @@ public class WavesDetails : MonoBehaviour {
         animTextWaveComplete.SetBool("WaveComplete", true);
         countEnemies = wave.waves[wave.numberWave].count;
         enemiesAlive.text = "Inimigos Vivos: " + wave.waves[wave.numberWave].count + "/" + wave.waves[wave.numberWave].count;
-       
+        
     }
 	
 	// Update is called once per frame
@@ -63,7 +59,6 @@ public class WavesDetails : MonoBehaviour {
         {
             qntWaves.text = "Level Completado";
             animTextWaveComplete.SetBool("WaveComplete", true);
-           
         }
 
 
@@ -80,8 +75,4 @@ public class WavesDetails : MonoBehaviour {
 
 
 	}
-
-    
-
 }
-

@@ -1220,11 +1220,6 @@ Prefab:
       propertyPath: wave
       value: 
       objectReference: {fileID: 493578049}
-    - target: {fileID: 114736693547036276, guid: 3879c98ca503e4349bc1ff8635b10277,
-        type: 2}
-      propertyPath: portal
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 114946561996235312, guid: 3879c98ca503e4349bc1ff8635b10277,
         type: 2}
       propertyPath: playerHealth
@@ -1239,11 +1234,6 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114305325162732858, guid: 3879c98ca503e4349bc1ff8635b10277,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Cena4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3879c98ca503e4349bc1ff8635b10277, type: 2}
