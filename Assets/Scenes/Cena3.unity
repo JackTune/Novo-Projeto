@@ -360,6 +360,7 @@ MonoBehaviour:
   - {fileID: 2007688118}
   - {fileID: 962278624}
   - {fileID: 714930127}
+  playerHealth: {fileID: 549193598}
 --- !u!4 &493578050
 Transform:
   m_ObjectHideFlags: 0

@@ -239,6 +239,7 @@ MonoBehaviour:
   sinkSpeed: 1
   scoreValue: 70
   damageImage: {fileID: 114226606201189156}
+  damageGO: {fileID: 1857675321438724}
 --- !u!114 &114226606201189156
 MonoBehaviour:
   m_ObjectHideFlags: 1

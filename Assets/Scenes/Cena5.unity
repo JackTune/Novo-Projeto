@@ -452,6 +452,7 @@ MonoBehaviour:
   - {fileID: 2007688118}
   - {fileID: 962278624}
   - {fileID: 714930127}
+  playerHealth: {fileID: 549193598}
 --- !u!4 &493578050
 Transform:
   m_ObjectHideFlags: 0
@@ -1440,6 +1441,16 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114416933083434202, guid: 3879c98ca503e4349bc1ff8635b10277,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MenuPrincipal
+      objectReference: {fileID: 0}
+    - target: {fileID: 114197549097688738, guid: 3879c98ca503e4349bc1ff8635b10277,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Cena5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3879c98ca503e4349bc1ff8635b10277, type: 2}

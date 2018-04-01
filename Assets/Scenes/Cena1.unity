@@ -346,18 +346,19 @@ MonoBehaviour:
   - nome: Wave 1
     enemies:
     - {fileID: 4340926693749554, guid: 20da882207b7ddc4d973d35ee5153e29, type: 2}
-    count: 40
-    rate: 1
+    count: 30
+    rate: 2
   - nome: Wave 2
     enemies:
     - {fileID: 4340926693749554, guid: 20da882207b7ddc4d973d35ee5153e29, type: 2}
-    count: 60
+    count: 40
     rate: 2
   timeBetweenWaves: 5
   spawnPoints:
   - {fileID: 2007688118}
   - {fileID: 962278624}
   - {fileID: 714930127}
+  playerHealth: {fileID: 549193598}
 --- !u!4 &493578050
 Transform:
   m_ObjectHideFlags: 0
@@ -1128,16 +1129,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114946561996235312, guid: 3879c98ca503e4349bc1ff8635b10277,
-        type: 2}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 549193598}
     - target: {fileID: 114736693547036276, guid: 3879c98ca503e4349bc1ff8635b10277,
         type: 2}
       propertyPath: wave
       value: 
       objectReference: {fileID: 493578049}
+    - target: {fileID: 114946561996235312, guid: 3879c98ca503e4349bc1ff8635b10277,
+        type: 2}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 549193598}
     - target: {fileID: 224729111492463412, guid: 3879c98ca503e4349bc1ff8635b10277,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -1147,6 +1148,16 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114197549097688738, guid: 3879c98ca503e4349bc1ff8635b10277,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Cena1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114416933083434202, guid: 3879c98ca503e4349bc1ff8635b10277,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Cena2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3879c98ca503e4349bc1ff8635b10277, type: 2}

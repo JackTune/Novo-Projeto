@@ -7,15 +7,16 @@ public class GameOverManager : MonoBehaviour {
 	public PlayerHealth playerHealth;
 	public float restartDelay = 5f;
     public GameObject desativarTimeProxWaves;
+    public GameObject desativarCountEnemies;
     public Button restart;
 
 
 	Animator anim;
 	float restartTime;
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 		anim = GetComponent<Animator> ();
-
+        restart.interactable = false;
         
 	}
 	
@@ -24,12 +25,10 @@ public class GameOverManager : MonoBehaviour {
 		if (playerHealth.currentHealth <= 0) {
 			anim.SetTrigger ("GameOver");
             desativarTimeProxWaves.SetActive(false);
+            desativarCountEnemies.SetActive(false);
             restartTime += Time.deltaTime;
             restart.interactable = true;
 		}
-        else
-        {
-            restart.interactable = false;
-        }
+        
 	}
 }

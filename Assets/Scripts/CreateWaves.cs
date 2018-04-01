@@ -24,6 +24,7 @@ public class CreateWaves : MonoBehaviour {
     public float timeBetweenWaves = 10f;
     private float waveCountDown;
     public Transform[] spawnPoints;
+    public PlayerHealth playerHealth;
 
     //Auxiliares do WavesDetails
     [System.NonSerialized]
@@ -32,6 +33,8 @@ public class CreateWaves : MonoBehaviour {
     public int numberWave;
     [System.NonSerialized]
     public int countTempo;
+    [System.NonSerialized]
+    public bool waveComplete = true;
 
     //Animations
     
@@ -60,12 +63,12 @@ public class CreateWaves : MonoBehaviour {
             {
                 //Começa um novo round
                 WaveComplete();
-                numberWave = nextWave;
+
                 return;
             }
             else
             {
-                WavesDetails.waveComplete = false;
+                waveComplete = false;
                 return;
             }
         }
@@ -76,6 +79,7 @@ public class CreateWaves : MonoBehaviour {
             if(state != SpawnState.SPAWNING && state != SpawnState.FINISH)
             {
                 //Começar spawnando a wave
+                print(playerHealth.currentHealth);
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
             
@@ -92,8 +96,8 @@ public class CreateWaves : MonoBehaviour {
     void WaveComplete()
     {
         Debug.Log("Wave Completada");
-        WavesDetails.waveComplete = true;
 
+        
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
 
@@ -103,12 +107,14 @@ public class CreateWaves : MonoBehaviour {
             nextWave = 0;
             finish = true;
             state = SpawnState.FINISH;
-            WavesDetails.waveComplete = false;
+            waveComplete = false;
             print("Todas waves completadas");
         }
         else
         {
+            waveComplete = true;
             nextWave++;
+            numberWave = nextWave;
         }
 
     }
@@ -162,7 +168,10 @@ public class CreateWaves : MonoBehaviour {
         Debug.Log("Spawning Enemy: " + enemy.name);
 
         int spawnPointsIndex = Random.Range(0, spawnPoints.Length);
-        Instantiate(enemy, spawnPoints[spawnPointsIndex].position, spawnPoints[spawnPointsIndex].rotation);
+        if (playerHealth.currentHealth > 0)
+        {
+            Instantiate(enemy, spawnPoints[spawnPointsIndex].position, spawnPoints[spawnPointsIndex].rotation);
+        }
         
     }
 }

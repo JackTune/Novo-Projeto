@@ -12,19 +12,24 @@ public class WavesDetails : MonoBehaviour {
     int waveAnterior = 0;
     int time;
     public Animator animTextWaveComplete;
-    public static bool waveComplete = true;
     public static int countEnemies;
     public static bool isDeadEnemy;
+    
+   
+    
 
 
     // Use this for initialization
     void Start () {
-        
+
         qntWaves.text = "Waves: "+ (wave.numberWave + 1) + "/" + wave.waves.Length;
         timeProxWave.text ="Prox Wave: " + wave.timeBetweenWaves;
+
         animTextWaveComplete.SetBool("WaveComplete", true);
+        print("Entrou no if");
         countEnemies = wave.waves[wave.numberWave].count;
         enemiesAlive.text = "Inimigos Vivos: " + wave.waves[wave.numberWave].count + "/" + wave.waves[wave.numberWave].count;
+        
         
     }
 	
@@ -36,7 +41,7 @@ public class WavesDetails : MonoBehaviour {
             enemiesAlive.text = "Inimigos Vivos: " + countEnemies + "/" + wave.waves[wave.numberWave].count;
         }
 
-
+        
         //Texto para "wavesAtual/QntInteiradeWaves"
         if (wave.numberWave > waveAnterior)
         {
@@ -45,7 +50,7 @@ public class WavesDetails : MonoBehaviour {
             waveAnterior++;
         }
 
-        if (waveComplete)
+        if (wave.waveComplete)
         {
             animTextWaveComplete.SetBool("WaveComplete", true);
            
@@ -59,20 +64,27 @@ public class WavesDetails : MonoBehaviour {
         {
             qntWaves.text = "Level Completado";
             animTextWaveComplete.SetBool("WaveComplete", true);
+            
         }
+       
+        
 
 
 
         //Texto do Tempo para Próxima Wave
-        if (wave.countTempo >= 0 && wave.finish != true)
+        if (wave.countTempo > 0 && wave.finish != true)
         {
             timeProxWave.text = "Prox Wave: " + wave.countTempo;
         }
-        else if (wave.countTempo < 0)
+        else if (wave.countTempo <= 0)
         {
             timeProxWave.text = "Prox Wave: ---";
         }
 
+        
+
 
 	}
+
+    
 }

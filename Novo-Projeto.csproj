@@ -282,6 +282,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GITTEST\HelloWorld.cs" />
     <Compile Include="Assets\Scripts\BillBoardScript.cs" />
     <Compile Include="Assets\Scripts\camera\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CreateWaves.cs" />
@@ -290,6 +291,7 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemyManeger.cs" />
     <Compile Include="Assets\Scripts\Managers\GameOverManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\LevelCompleteManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ManagerScene.cs" />
     <Compile Include="Assets\Scripts\Managers\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\MENU.cs" />
