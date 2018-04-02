@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateWaves : MonoBehaviour {
 
@@ -25,6 +26,11 @@ public class CreateWaves : MonoBehaviour {
     private float waveCountDown;
     public Transform[] spawnPoints;
     public PlayerHealth playerHealth;
+    public Text timeText;
+    public float starTime;
+    bool comecarContar;
+    [System.NonSerialized]
+    public float time;
 
     //Auxiliares do WavesDetails
     [System.NonSerialized]
@@ -50,13 +56,28 @@ public class CreateWaves : MonoBehaviour {
         waveCountDown = timeBetweenWaves;
         numberWave = nextWave;
         countTempo = (int)waveCountDown;
+        time = starTime;
+        timeText.text = "" + (int)time;
 
     }
 
     private void Update()
     {
+        if (comecarContar)
+        {
+            time -= Time.deltaTime;
+            timeText.text = "" + (int)time;
+            if (time <= 0)
+            {
+                print("Entrou no if de time");
+                GameOverManager.timeGamveOver = true;
+                comecarContar = false;
+            }
+        }
+
         
-        if(state == SpawnState.WAITING)
+
+        if (state == SpawnState.WAITING)
         {
             //Check if os inimigos ainda estão vivos
             if (!EnemiesIsAlive())
@@ -79,16 +100,18 @@ public class CreateWaves : MonoBehaviour {
             if(state != SpawnState.SPAWNING && state != SpawnState.FINISH)
             {
                 //Começar spawnando a wave
-                print(playerHealth.currentHealth);
+                comecarContar = true;
                 StartCoroutine(SpawnWave(waves[nextWave]));
             }
-            
+
         }
         else
         {
             waveCountDown -= Time.deltaTime;
             countTempo = (int)waveCountDown;
         }
+
+        
     }
 
 
@@ -108,10 +131,12 @@ public class CreateWaves : MonoBehaviour {
             finish = true;
             state = SpawnState.FINISH;
             waveComplete = false;
+            comecarContar = false;
             print("Todas waves completadas");
         }
         else
         {
+            time = starTime + 1;
             waveComplete = true;
             nextWave++;
             numberWave = nextWave;
