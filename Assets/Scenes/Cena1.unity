@@ -300,12 +300,12 @@ Prefab:
         type: 2}
       propertyPath: sliderHealth
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1396824580}
     - target: {fileID: 114651710371755698, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
         type: 2}
       propertyPath: damageImage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1396824579}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac0a3cb4f9ddbe3439e93e72f0893a37, type: 2}
   m_IsPrefabParent: 0
@@ -340,8 +340,8 @@ MonoBehaviour:
   - nome: Wave 1
     enemies:
     - {fileID: 4340926693749554, guid: 20da882207b7ddc4d973d35ee5153e29, type: 2}
-    count: 2
-    rate: 2
+    count: 1
+    rate: 1
   - nome: Wave 2
     enemies:
     - {fileID: 4340926693749554, guid: 20da882207b7ddc4d973d35ee5153e29, type: 2}
@@ -910,6 +910,18 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1396824577}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1396824579 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114779618002857798, guid: b4e8753a098117342a513dc82d122a9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1396824577}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1396824580 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114277551124476372, guid: b4e8753a098117342a513dc82d122a9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1396824577}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1410335101
 GameObject:
   m_ObjectHideFlags: 0

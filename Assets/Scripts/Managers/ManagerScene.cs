@@ -8,6 +8,7 @@ public class ManagerScene : MonoBehaviour {
 
 	public void ChangeScene (string cena){
 		nomeCena = cena;
+        SaveScore();
 		StartCoroutine (AbrirCena());
 	}
       
@@ -18,5 +19,12 @@ public class ManagerScene : MonoBehaviour {
 
 	}
 
+    void SaveScore()
+    {
+        PlayerPrefs.SetInt("Score", ScoreManager.score);
+    }
+
+
 
 }
+

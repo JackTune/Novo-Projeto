@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ScoreManager : MonoBehaviour {
 
 	public static int score;
@@ -13,10 +14,30 @@ public class ScoreManager : MonoBehaviour {
 	void Awake () {
 		text = GetComponent<Text> ();
 		score = 0;
+        
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+     void Start()
+    {
+        if (PlayerPrefs.HasKey("Score"))
+        {
+            if (Application.loadedLevel == 1)
+            {
+                PlayerPrefs.DeleteKey("Score");
+                score = 0;
+            }
+            else
+            {
+               score = PlayerPrefs.GetInt("Score");
+            }
+
+
+
+        }
+
+    }
+    // Update is called once per frame
+    void Update () {
 		text.text = "Score: " + score;
 	}
 }
