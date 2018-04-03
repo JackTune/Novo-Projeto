@@ -7,9 +7,9 @@ public class PlayerHealth : MonoBehaviour {
 
 
     //Vida do player
-    public int startingHealth = 100;
-    public int currentHealth;
-    public Slider sliderHealth;
+    public float startingHealth = 100f;
+    public float currentHealth;
+    public Image imageHealth;
 
     //Imagem do Damage
     public Image damageImage;
@@ -60,8 +60,8 @@ public class PlayerHealth : MonoBehaviour {
 
         currentHealth -= amount;
 
-        sliderHealth.value = currentHealth;
-
+        imageHealth.fillAmount = currentHealth / startingHealth;
+        
         //  playerAudio.Play();
 
         if (currentHealth <= 0 && !isDead)

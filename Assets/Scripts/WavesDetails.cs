@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class WavesDetails : MonoBehaviour {
 
     public Text qntWaves;
-    public Text timeProxWave;
     public Text enemiesAlive;
     public CreateWaves wave;
     int waveAnterior = 0;
@@ -23,25 +22,23 @@ public class WavesDetails : MonoBehaviour {
     void Start () {
 
         qntWaves.text = "Waves: "+ (wave.numberWave + 1) + "/" + wave.waves.Length;
-        timeProxWave.text ="Prox Wave: " + wave.timeBetweenWaves;
-
         animTextWaveComplete.SetBool("WaveComplete", true);
         print("Entrou no if");
         countEnemies = wave.waves[wave.numberWave].count;
-        enemiesAlive.text = "Inimigos Vivos: " + wave.waves[wave.numberWave].count + "/" + wave.waves[wave.numberWave].count;
+        enemiesAlive.text = "" + wave.waves[wave.numberWave].count;
         
         
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
 
         if (isDeadEnemy)
         {
-            enemiesAlive.text = "Inimigos Vivos: " + countEnemies + "/" + wave.waves[wave.numberWave].count;
+            enemiesAlive.text = "" + countEnemies;
         }
 
-        
+
         //Texto para "wavesAtual/QntInteiradeWaves"
         if (wave.numberWave > waveAnterior)
         {
@@ -53,7 +50,7 @@ public class WavesDetails : MonoBehaviour {
         if (wave.waveComplete)
         {
             animTextWaveComplete.SetBool("WaveComplete", true);
-           
+
         }
         else
         {
@@ -64,24 +61,8 @@ public class WavesDetails : MonoBehaviour {
         {
             qntWaves.text = "Level Completado";
             animTextWaveComplete.SetBool("WaveComplete", true);
-            
-        }
-       
-        
 
-
-
-        //Texto do Tempo para Próxima Wave
-        if (wave.countTempo > 0 && wave.finish != true)
-        {
-            timeProxWave.text = "Prox Wave: " + wave.countTempo;
-        }
-        else if (wave.countTempo <= 0)
-        {
-            timeProxWave.text = "Prox Wave: ---";
-        }
-
-        
+        }           
 
 
 	}

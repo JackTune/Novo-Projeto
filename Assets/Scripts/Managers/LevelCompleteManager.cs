@@ -7,8 +7,6 @@ public class LevelCompleteManager : MonoBehaviour {
 
     public WavesDetails waveDetals;
     public float restartDelay = 5f;
-    public GameObject desativarTimeProxWaves;
-    public GameObject desativarCountEnemies;
     public Button proxFase;
 
     Animator anim;
@@ -24,8 +22,6 @@ public class LevelCompleteManager : MonoBehaviour {
         if (waveDetals.wave.finish)
         {
             StartCoroutine(Espera());
-            desativarTimeProxWaves.SetActive(false);
-            desativarCountEnemies.SetActive(false);
             restartTime += Time.deltaTime;
             proxFase.interactable = true;
         }

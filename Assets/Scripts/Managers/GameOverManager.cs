@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class GameOverManager : MonoBehaviour {
 	public PlayerHealth playerHealth;
 	public float restartDelay = 5f;
-    public GameObject desativarTimeProxWaves;
-    public GameObject desativarCountEnemies;
     public Button restart;
     public static bool timeGamveOver;
 
@@ -25,8 +23,6 @@ public class GameOverManager : MonoBehaviour {
 	void Update () {
 		if (playerHealth.currentHealth <= 0 || timeGamveOver == true) {
 			anim.SetTrigger ("GameOver");
-            desativarTimeProxWaves.SetActive(false);
-            desativarCountEnemies.SetActive(false);
             restartTime += Time.deltaTime;
             restart.interactable = true;
 		}

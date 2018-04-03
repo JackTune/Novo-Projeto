@@ -21,23 +21,12 @@ public class ScoreManager : MonoBehaviour {
     {
         if (PlayerPrefs.HasKey("Score"))
         {
-            if (Application.loadedLevel == 1)
-            {
-                PlayerPrefs.DeleteKey("Score");
-                score = 0;
-            }
-            else
-            {
-               score = PlayerPrefs.GetInt("Score");
-            }
-
-
-
+            score = PlayerPrefs.GetInt("Score");
         }
 
     }
     // Update is called once per frame
     void Update () {
-		text.text = "Score: " + score;
+		text.text = "" + score;
 	}
 }
