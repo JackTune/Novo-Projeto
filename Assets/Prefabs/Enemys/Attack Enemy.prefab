@@ -321,6 +321,9 @@ MonoBehaviour:
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 30
+  ExperienceValue: 5
+  playerExperience: {fileID: 114642043751724430, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
+    type: 2}
   damageImage: {fileID: 114485607611635944}
   damageGO: {fileID: 1429915771945758}
 --- !u!114 &114962353053082078

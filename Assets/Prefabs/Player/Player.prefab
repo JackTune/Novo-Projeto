@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 114465928899076146}
   - component: {fileID: 54977737740531058}
   - component: {fileID: 114651710371755698}
+  - component: {fileID: 114199274340812038}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -382,6 +383,21 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114199274340812038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1608606980247126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8093002b65939343932561ef2b9cb46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceImage: {fileID: 0}
+  currentExperience: 0
+  startingExperience: 0
+  maxExperience: 100
 --- !u!114 &114264168697365190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -421,10 +437,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   currentHealth: 0
-  sliderHealth: {fileID: 0}
+  imageHealth: {fileID: 0}
   damageImage: {fileID: 0}
   flashSepeed: 5
   flashColour: {r: 0.16608979, g: 0, b: 0.88235295, a: 0.534}
+  playerLevel: 1
 --- !u!120 &120416050617030178
 LineRenderer:
   m_ObjectHideFlags: 1

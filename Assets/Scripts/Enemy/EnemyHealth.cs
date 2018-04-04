@@ -16,10 +16,23 @@ public class EnemyHealth : MonoBehaviour {
     //Pontos que o inimigo dá
     public int scoreValue = 10;
 
+    //Modificações
+
+
+    float experienceValue = 10;
+    GameObject player;
+    PlayerExperience playerExperience;
+
+
+    //Modificações
+
+
     //Animações e Audios
     // public AudioClip deathClip;
     //Animator anim;
     // AudioSource enemyAudio;
+
+
 
 
     //Levar dano
@@ -36,22 +49,32 @@ public class EnemyHealth : MonoBehaviour {
     bool enemyTakeDamage;
 
     // Use this for initialization
-     void Awake()
+    void Awake()
     {
-       // anim = GetComponent<Animator>();
-       // enemyAudio = GetComponent<AudioSource>();
+        // anim = GetComponent<Animator>();
+        // enemyAudio = GetComponent<AudioSource>();
         hitParticle = GetComponentInChildren<ParticleSystem>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         damageGO.SetActive(false);
         currentHealth = startingHealth;
+
+        //Achar o PlayerExperience
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            playerExperience = player.GetComponent<PlayerExperience>();
+        }
     }
 
     // Update is called once per frame
-    void Update () { 
+    void Update () {
+
+        
 
         if (isSinking)
         {
             transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
+           
         }
 
 
@@ -110,6 +133,8 @@ public class EnemyHealth : MonoBehaviour {
         WavesDetails.countEnemies--;
         WavesDetails.isDeadEnemy = true;
 
+
+        playerExperience.AddExperience(experienceValue);
         //anim.SetTrigger ("Dead");
 
        // enemyAudio.clip = deathClip;
@@ -126,4 +151,9 @@ public class EnemyHealth : MonoBehaviour {
         ScoreManager.score += scoreValue;
         Destroy(gameObject, 2f);
     }
+
+
+    
+    
+
 }

@@ -17,6 +17,11 @@ public class PlayerHealth : MonoBehaviour {
     public float flashSepeed;
     public Color flashColour;
 
+    //Faz parte da experiencia do player
+    
+    public float playerLevel = 1;
+    
+
     //Animações e Audios
     // Animator anim;
     // AudioSource playerAudio;
@@ -36,6 +41,7 @@ public class PlayerHealth : MonoBehaviour {
         player = GetComponent<PlayerController>();
         playerShooting = GetComponentInChildren<PlayerShooting>();
         currentHealth = startingHealth;
+        
 	}
 	
 	// Update is called once per frame

@@ -296,9 +296,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114651710371755698, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
+    - target: {fileID: 114199274340812038, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
         type: 2}
-      propertyPath: sliderHealth
+      propertyPath: experienceImage
       value: 
       objectReference: {fileID: 878500165}
     - target: {fileID: 114651710371755698, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
@@ -583,26 +583,6 @@ Prefab:
       propertyPath: wave
       value: 
       objectReference: {fileID: 493578049}
-    - target: {fileID: 224202336984029436, guid: b4e8753a098117342a513dc82d122a9b,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224202336984029436, guid: b4e8753a098117342a513dc82d122a9b,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114561805085211240, guid: b4e8753a098117342a513dc82d122a9b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Cena3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114999570981265480, guid: b4e8753a098117342a513dc82d122a9b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Cena2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4e8753a098117342a513dc82d122a9b, type: 2}
   m_IsPrefabParent: 0
@@ -620,10 +600,10 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &878500165 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114277551124476372, guid: b4e8753a098117342a513dc82d122a9b,
+  m_PrefabParentObject: {fileID: 114625153845480060, guid: b4e8753a098117342a513dc82d122a9b,
     type: 2}
   m_PrefabInternal: {fileID: 878500162}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &895270483
 GameObject:
   m_ObjectHideFlags: 0
