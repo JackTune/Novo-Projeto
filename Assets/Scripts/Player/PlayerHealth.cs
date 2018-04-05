@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour {
 
     //Faz parte da experiencia do player
     
-    public float playerLevel = 1;
+    public int playerLevel = 1;
     
 
     //Animações e Audios
@@ -41,11 +41,22 @@ public class PlayerHealth : MonoBehaviour {
         player = GetComponent<PlayerController>();
         playerShooting = GetComponentInChildren<PlayerShooting>();
         currentHealth = startingHealth;
+
         
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    }
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("Level"))
+        {
+            
+            playerLevel = PlayerPrefs.GetInt("Level");
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (dameged)
         {
                 damageImage.color = flashColour;

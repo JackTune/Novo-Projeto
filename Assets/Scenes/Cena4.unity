@@ -296,11 +296,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114199274340812038, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
+        type: 2}
+      propertyPath: experienceImage
+      value: 
+      objectReference: {fileID: 834416177}
     - target: {fileID: 114651710371755698, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
         type: 2}
-      propertyPath: sliderHealth
+      propertyPath: imageHealth
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 834416178}
     - target: {fileID: 114651710371755698, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
         type: 2}
       propertyPath: damageImage
@@ -308,9 +313,9 @@ Prefab:
       objectReference: {fileID: 834416176}
     - target: {fileID: 114199274340812038, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
         type: 2}
-      propertyPath: experienceImage
+      propertyPath: levelText
       value: 
-      objectReference: {fileID: 834416177}
+      objectReference: {fileID: 834416179}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac0a3cb4f9ddbe3439e93e72f0893a37, type: 2}
   m_IsPrefabParent: 0
@@ -631,6 +636,18 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 834416174}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &834416178 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114185672954042328, guid: b4e8753a098117342a513dc82d122a9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 834416174}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &834416179 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114129100732310072, guid: b4e8753a098117342a513dc82d122a9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 834416174}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &895270483
 GameObject:
   m_ObjectHideFlags: 0

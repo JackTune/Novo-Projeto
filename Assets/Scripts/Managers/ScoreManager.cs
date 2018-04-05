@@ -14,19 +14,23 @@ public class ScoreManager : MonoBehaviour {
 	void Awake () {
 		text = GetComponent<Text> ();
 		score = 0;
-        
-	}
 
-     void Start()
+
+    }
+
+    private void Start()
     {
+
         if (PlayerPrefs.HasKey("Score"))
         {
+
             score = PlayerPrefs.GetInt("Score");
         }
-
     }
     // Update is called once per frame
     void Update () {
 		text.text = "" + score;
 	}
+
+
 }

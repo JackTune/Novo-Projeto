@@ -23,7 +23,7 @@ public class WavesDetails : MonoBehaviour {
 
         qntWaves.text = "Waves: "+ (wave.numberWave + 1) + "/" + wave.waves.Length;
         animTextWaveComplete.SetBool("WaveComplete", true);
-        print("Entrou no if");
+        
         countEnemies = wave.waves[wave.numberWave].count;
         enemiesAlive.text = "" + wave.waves[wave.numberWave].count;
         

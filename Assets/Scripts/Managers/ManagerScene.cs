@@ -4,24 +4,42 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ManagerScene : MonoBehaviour {
 
+    GameObject player;
+    PlayerHealth playerHealth;
+    PlayerExperience playerExperience;
+
 	string nomeCena;
 
 	public void ChangeScene (string cena){
 		nomeCena = cena;
-        SaveScore();
+        Save();
 		StartCoroutine (AbrirCena());
 	}
-      
-	private IEnumerator AbrirCena(){
+
+     void Awake()
+    {
+         if (GameObject.FindGameObjectWithTag("Player"))
+            {
+            player = GameObject.FindGameObjectWithTag("Player");
+            playerHealth = player.GetComponent<PlayerHealth>();
+            playerExperience = player.GetComponent<PlayerExperience>();
+           
+        }
+    }
+    
+    private IEnumerator AbrirCena(){
 
 		yield return new WaitForSeconds (0.5f);
 		SceneManager.LoadScene (nomeCena);
 
 	}
 
-    void SaveScore()
+    void Save()
     {
         PlayerPrefs.SetInt("Score", ScoreManager.score);
+        PlayerPrefs.SetInt("Level", playerHealth.playerLevel);
+        PlayerPrefs.SetFloat("Experience", playerExperience.currentExperience);
+        PlayerPrefs.SetFloat("MaxExperience", playerExperience.maxExperience);
     }
 
 

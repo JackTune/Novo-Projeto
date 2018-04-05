@@ -398,6 +398,7 @@ MonoBehaviour:
   currentExperience: 0
   startingExperience: 0
   maxExperience: 100
+  levelText: {fileID: 0}
 --- !u!114 &114264168697365190
 MonoBehaviour:
   m_ObjectHideFlags: 1
