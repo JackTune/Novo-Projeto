@@ -14,6 +14,7 @@ public class UpgradeLvL : MonoBehaviour {
     public Button botaoVida;
     public Button botaoAtaque;
     public GameObject imageUp;
+    public GameObject imageCountPoints;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class UpgradeLvL : MonoBehaviour {
         if (playerExperience.levelUp)
         {
             imageUp.SetActive(true);
+            imageCountPoints.SetActive(true);
             ButtonsInteractable(true);
         }
     }
@@ -41,8 +43,8 @@ public class UpgradeLvL : MonoBehaviour {
         if (playerExperience.levelUp)
         {
             imageUp.SetActive(true);
-            botaoAtaque.interactable = true;
-            botaoVida.interactable = true;
+            imageCountPoints.SetActive(true);
+            ButtonsInteractable(true);
         }
 
     }
@@ -50,18 +52,30 @@ public class UpgradeLvL : MonoBehaviour {
     public void UpgradeVida()
     {
         HP.maxHealth += HP.maxHealth * 0.01f;
-        imageUp.SetActive(false);
-        ButtonsInteractable(false);
+        playerExperience.countLvlUp--;
+        Upgrade(playerExperience.countLvlUp);
     }
     public void UpgradeAtaque()
     {
         attack.damagePerShot += 2;
-        imageUp.SetActive(false);
-        ButtonsInteractable(false);
+        playerExperience.countLvlUp--;
+        Upgrade(playerExperience.countLvlUp);
     }
 
 
-    void ButtonsInteractable(bool ativoOuNao)
+    void Upgrade(int count)
+    {
+
+        if (count <= 0)
+        {
+            imageUp.SetActive(false);
+            ButtonsInteractable(false);
+            playerExperience.countLvlUp = 0;
+        }
+        playerExperience.textCountPoints.text = "Points: " + playerExperience.countLvlUp;
+    }
+
+        void ButtonsInteractable(bool ativoOuNao)
     {
         botaoAtaque.interactable = ativoOuNao;
         botaoVida.interactable = ativoOuNao;

@@ -331,6 +331,16 @@ Prefab:
       propertyPath: botaoAtaque
       value: 
       objectReference: {fileID: 834416180}
+    - target: {fileID: 114334208371829220, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
+        type: 2}
+      propertyPath: imageCountPoints
+      value: 
+      objectReference: {fileID: 834416184}
+    - target: {fileID: 114199274340812038, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
+        type: 2}
+      propertyPath: textCountPoints
+      value: 
+      objectReference: {fileID: 834416183}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac0a3cb4f9ddbe3439e93e72f0893a37, type: 2}
   m_IsPrefabParent: 0
@@ -636,6 +646,17 @@ MonoBehaviour:
 --- !u!1 &834416182 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1077537053484200, guid: b4e8753a098117342a513dc82d122a9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 834416174}
+--- !u!114 &834416183 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114182707720566808, guid: b4e8753a098117342a513dc82d122a9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 834416174}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1 &834416184 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1698190122225672, guid: b4e8753a098117342a513dc82d122a9b,
     type: 2}
   m_PrefabInternal: {fileID: 834416174}
 --- !u!1 &895270483

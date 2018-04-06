@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PlayerExperience : MonoBehaviour {
 
     public Image experienceImage;
+    
+    public Text textCountPoints;
 
     public float currentExperience;
 
@@ -14,6 +16,8 @@ public class PlayerExperience : MonoBehaviour {
     public float maxExperience;
 
     PlayerHealth playerHealth;
+
+    public int countLvlUp = 0;
 
     public Text levelText;
 
@@ -79,6 +83,8 @@ public class PlayerExperience : MonoBehaviour {
     void LevelUp()
     {
         levelUp = true;
+        countLvlUp++;
+        textCountPoints.text = "Points: " + countLvlUp;
         currentExperience = 0;
         maxExperience += maxExperience * 0.2f;
         playerHealth.playerLevel += 1;
