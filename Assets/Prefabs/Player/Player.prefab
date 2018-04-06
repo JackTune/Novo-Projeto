@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 54977737740531058}
   - component: {fileID: 114651710371755698}
   - component: {fileID: 114199274340812038}
+  - component: {fileID: 114334208371829220}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -413,6 +414,20 @@ MonoBehaviour:
   damagePerShot: 20
   TimeBetweenBullets: 0.15
   range: 100
+--- !u!114 &114334208371829220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1608606980247126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57bd8118ff3ff73429405b861d2f4673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botaoVida: {fileID: 0}
+  botaoAtaque: {fileID: 0}
+  imageUp: {fileID: 0}
 --- !u!114 &114465928899076146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -437,6 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  maxHealth: 100
   currentHealth: 0
   imageHealth: {fileID: 0}
   damageImage: {fileID: 0}
@@ -591,7 +607,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 975726454
+  randomSeed: -1283868651
   InitialModule:
     serializedVersion: 3
     enabled: 1

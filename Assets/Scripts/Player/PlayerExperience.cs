@@ -17,6 +17,9 @@ public class PlayerExperience : MonoBehaviour {
 
     public Text levelText;
 
+    [System.NonSerialized]
+    public bool levelUp = false;
+
 	// Use this for initialization
 	void Awake () {
         playerHealth = GetComponent<PlayerHealth>();
@@ -58,8 +61,10 @@ public class PlayerExperience : MonoBehaviour {
             levelText.text = "" + playerHealth.playerLevel;
 
         }
-        
-            
+        else
+        {
+            levelUp = false;
+        }
         
     }
 
@@ -73,7 +78,7 @@ public class PlayerExperience : MonoBehaviour {
 
     void LevelUp()
     {
-
+        levelUp = true;
         currentExperience = 0;
         maxExperience += maxExperience * 0.2f;
         playerHealth.playerLevel += 1;

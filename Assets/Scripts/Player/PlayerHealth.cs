@@ -7,7 +7,8 @@ public class PlayerHealth : MonoBehaviour {
 
 
     //Vida do player
-    public float startingHealth = 100f;
+    public float startingHealth;
+    public float maxHealth = 100f;
     public float currentHealth;
     public Image imageHealth;
 
@@ -40,19 +41,23 @@ public class PlayerHealth : MonoBehaviour {
     //    playerAudio = GetComponent<AudioSource>();
         player = GetComponent<PlayerController>();
         playerShooting = GetComponentInChildren<PlayerShooting>();
-        currentHealth = startingHealth;
-
-        
 
     }
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("Level"))
+        /*if (PlayerPrefs.HasKey("Level"))
         {
             
             playerLevel = PlayerPrefs.GetInt("Level");
+        }*/
+        if (PlayerPrefs.HasKey("MaxHealth"))
+        {
+            maxHealth = PlayerPrefs.GetFloat("MaxHealth");
         }
+
+        startingHealth = maxHealth;
+        currentHealth = startingHealth;
     }
 
     // Update is called once per frame
@@ -77,7 +82,7 @@ public class PlayerHealth : MonoBehaviour {
 
         currentHealth -= amount;
 
-        imageHealth.fillAmount = currentHealth / startingHealth;
+        imageHealth.fillAmount = currentHealth / maxHealth;
         
         //  playerAudio.Play();
 
