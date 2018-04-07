@@ -370,6 +370,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1796846523}
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!95 &430319255 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95424053130715490, guid: b4e8753a098117342a513dc82d122a9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1796846523}
 --- !u!114 &493578049 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114268406397219834, guid: b8143ed4acb00b844b3228f3d8fd44c4,
@@ -5101,6 +5106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57bd8118ff3ff73429405b861d2f4673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 430319255}
   botaoVida: {fileID: 419348133}
   botaoAtaque: {fileID: 303492675}
   imageUp: {fileID: 1578147176}
@@ -5232,6 +5238,10 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1710253533}
+    - target: {fileID: 1077537053484200, guid: b4e8753a098117342a513dc82d122a9b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4e8753a098117342a513dc82d122a9b, type: 2}
   m_IsPrefabParent: 0

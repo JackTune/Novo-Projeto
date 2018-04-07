@@ -9,6 +9,7 @@ public class UpgradeLvL : MonoBehaviour {
     PlayerHealth HP;
     PlayerShooting attack;
 
+     public Animator anim;
 
     //UI
     public Button botaoVida;
@@ -16,11 +17,15 @@ public class UpgradeLvL : MonoBehaviour {
     public GameObject imageUp;
     public GameObject imageCountPoints;
 
+    bool naoEntrouNoMetodo = true;
+    float time;
+
     private void Awake()
     {
         playerExperience = GetComponent<PlayerExperience>();
         HP = GetComponent<PlayerHealth>();
-        attack = GetComponentInChildren<PlayerShooting>(); 
+        attack = GetComponentInChildren<PlayerShooting>();
+        //anim = GetComponent<Animator>();
     }
     // Use this for initialization
     void Start()
@@ -31,6 +36,7 @@ public class UpgradeLvL : MonoBehaviour {
 
         if (playerExperience.levelUp)
         {
+
             imageUp.SetActive(true);
             imageCountPoints.SetActive(true);
             ButtonsInteractable(true);
@@ -45,8 +51,27 @@ public class UpgradeLvL : MonoBehaviour {
             imageUp.SetActive(true);
             imageCountPoints.SetActive(true);
             ButtonsInteractable(true);
+            anim.SetBool("LevelUp", true);
+
         }
 
+        /*if (!naoEntrouNoMetodo)
+        {
+            time += Time.deltaTime;
+            anim.SetBool("LevelUp", false);
+            while (time < 1.1f)
+            {
+                time += Time.deltaTime;
+            }
+            if (time > 1.1f)
+            {
+                imageUp.SetActive(false);
+            }
+                
+            naoEntrouNoMetodo = true;
+        }*/
+
+        
     }
 
     public void UpgradeVida()
@@ -65,19 +90,20 @@ public class UpgradeLvL : MonoBehaviour {
 
     void Upgrade(int count)
     {
-
+        
         if (count <= 0)
         {
-            imageUp.SetActive(false);
+            //anim.SetBool("LevelUpFalse", true);
             ButtonsInteractable(false);
             playerExperience.countLvlUp = 0;
+            naoEntrouNoMetodo = false;
         }
         playerExperience.textCountPoints.text = "Points: " + playerExperience.countLvlUp;
     }
 
         void ButtonsInteractable(bool ativoOuNao)
-    {
+        {
         botaoAtaque.interactable = ativoOuNao;
         botaoVida.interactable = ativoOuNao;
-    }
+        }
 }
