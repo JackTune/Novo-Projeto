@@ -17,20 +17,19 @@ public class UpgradeLvL : MonoBehaviour {
     public GameObject imageUp;
     public GameObject imageCountPoints;
 
-    bool naoEntrouNoMetodo = true;
-    float time;
+   
 
     private void Awake()
     {
         playerExperience = GetComponent<PlayerExperience>();
         HP = GetComponent<PlayerHealth>();
         attack = GetComponentInChildren<PlayerShooting>();
-        //anim = GetComponent<Animator>();
+       
     }
     // Use this for initialization
     void Start()
     {
-
+        
         ButtonsInteractable(false);
 
 
@@ -46,40 +45,27 @@ public class UpgradeLvL : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        //Quando o player upar
         if (playerExperience.levelUp)
         {
-            imageUp.SetActive(true);
-            imageCountPoints.SetActive(true);
             ButtonsInteractable(true);
             anim.SetBool("LevelUp", true);
-
+            anim.SetBool("LevelUpFalse", false);
         }
-
-        /*if (!naoEntrouNoMetodo)
-        {
-            time += Time.deltaTime;
-            anim.SetBool("LevelUp", false);
-            while (time < 1.1f)
-            {
-                time += Time.deltaTime;
-            }
-            if (time > 1.1f)
-            {
-                imageUp.SetActive(false);
-            }
-                
-            naoEntrouNoMetodo = true;
-        }*/
+        
 
         
     }
 
+
+    //----- VOIDS CLICKS -----//
     public void UpgradeVida()
     {
         HP.maxHealth += HP.maxHealth * 0.01f;
         playerExperience.countLvlUp--;
         Upgrade(playerExperience.countLvlUp);
     }
+
     public void UpgradeAtaque()
     {
         attack.damagePerShot += 2;
@@ -88,22 +74,24 @@ public class UpgradeLvL : MonoBehaviour {
     }
 
 
+    //Void função que gerencia a qnt de pontos obtidos
     void Upgrade(int count)
     {
         
         if (count <= 0)
         {
-            //anim.SetBool("LevelUpFalse", true);
+            anim.SetBool("LevelUp", false);
             ButtonsInteractable(false);
             playerExperience.countLvlUp = 0;
-            naoEntrouNoMetodo = false;
+            anim.SetBool("LevelUpFalse", true);
         }
         playerExperience.textCountPoints.text = "Points: " + playerExperience.countLvlUp;
     }
 
-        void ButtonsInteractable(bool ativoOuNao)
-        {
-        botaoAtaque.interactable = ativoOuNao;
-        botaoVida.interactable = ativoOuNao;
-        }
+    //Void para interagir os botões
+    void ButtonsInteractable(bool ativoOuNao)
+    {
+    botaoAtaque.interactable = ativoOuNao;
+    botaoVida.interactable = ativoOuNao;
+    }
 }

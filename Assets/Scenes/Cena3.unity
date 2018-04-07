@@ -347,6 +347,11 @@ Prefab:
       propertyPath: textCountPoints
       value: 
       objectReference: {fileID: 931913236}
+    - target: {fileID: 114334208371829220, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
+        type: 2}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 931913238}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac0a3cb4f9ddbe3439e93e72f0893a37, type: 2}
   m_IsPrefabParent: 0
@@ -689,6 +694,11 @@ MonoBehaviour:
 --- !u!1 &931913237 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1698190122225672, guid: b4e8753a098117342a513dc82d122a9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 931913228}
+--- !u!95 &931913238 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95424053130715490, guid: b4e8753a098117342a513dc82d122a9b,
     type: 2}
   m_PrefabInternal: {fileID: 931913228}
 --- !u!1 &962278623

@@ -78,8 +78,8 @@ GameObject:
   - component: {fileID: 33217054866589580}
   - component: {fileID: 65474044890319238}
   - component: {fileID: 23336182758319646}
-  - component: {fileID: 114465928899076146}
   - component: {fileID: 54977737740531058}
+  - component: {fileID: 114465928899076146}
   - component: {fileID: 114651710371755698}
   - component: {fileID: 114199274340812038}
   - component: {fileID: 114334208371829220}
@@ -396,9 +396,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experienceImage: {fileID: 0}
+  textCountPoints: {fileID: 0}
   currentExperience: 0
   startingExperience: 0
   maxExperience: 100
+  countLvlUp: 0
   levelText: {fileID: 0}
 --- !u!114 &114264168697365190
 MonoBehaviour:
@@ -425,9 +427,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57bd8118ff3ff73429405b861d2f4673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   botaoVida: {fileID: 0}
   botaoAtaque: {fileID: 0}
   imageUp: {fileID: 0}
+  imageCountPoints: {fileID: 0}
 --- !u!114 &114465928899076146
 MonoBehaviour:
   m_ObjectHideFlags: 1
