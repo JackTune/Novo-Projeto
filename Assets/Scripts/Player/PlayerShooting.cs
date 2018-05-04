@@ -6,25 +6,20 @@ public class PlayerShooting : MonoBehaviour {
     //Variables Gun
     public int damagePerShot = 20;
     public float TimeBetweenBullets = 2f;
-    public float range = 100f;
 
     PlayerHealth playerHealth;
 
     float timer;
-    Ray shootRay;
-    RaycastHit shootHit;
-    int shootableMask;
     ParticleSystem gunParticle;
-    LineRenderer gunLine;
+
     //AudioSource gunAudio;
     Light gunLight;
     float effectsDisplayTime = 0.2f;
 
     private void Awake()
     {
-        shootableMask = LayerMask.GetMask("Shootable");
         gunParticle = GetComponent<ParticleSystem>();
-        gunLine = GetComponent<LineRenderer>();
+       // gunLine = GetComponent<LineRenderer>();
       //  gunAudio = GetComponent<AudioSource>();
         gunLight = GetComponent<Light>();
         playerHealth = GetComponentInParent<PlayerHealth>();
@@ -57,7 +52,6 @@ public class PlayerShooting : MonoBehaviour {
 
     public void DisableEffects()
     {
-        gunLine.enabled = false;
         gunLight.enabled = false;
     }
 
@@ -72,31 +66,25 @@ public class PlayerShooting : MonoBehaviour {
         gunParticle.Stop();
         gunParticle.Play();
 
-        gunLine.enabled = true;
-        gunLine.SetPosition(0, transform.position);
-
-        shootRay.origin = transform.position;
-        shootRay.direction = transform.forward;
-
-        if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
-        {
-            EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
-
-            if(enemyHealth != null)
-            {
-                //print("Tiro pegou");
-                enemyHealth.TakeDamege(damagePerShot, shootHit.point);
-            }
-            gunLine.SetPosition(1, shootHit.point);
-        }
-        else
-        {
-            gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
-        }
     }
 
-	 
 
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            //Procura se o objeto colidido tem o script EnemyHealth
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+
+
+            //Caso Exista um enemyHealth naquele objeto
+            if(enemyHealth != null)
+            {
+                print("Tiro Pegou");
+                enemyHealth.TakeDamage(damagePerShot);
+            }
+        }
+    }
 
 
 }

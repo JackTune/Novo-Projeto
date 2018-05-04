@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Congelar
+  - StormIce
+  - BlackHole
   layers:
   - Default
   - TransparentFX

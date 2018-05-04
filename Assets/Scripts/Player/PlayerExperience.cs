@@ -34,7 +34,7 @@ public class PlayerExperience : MonoBehaviour {
 
     void Start()
     {
-
+        // Pegar valor das variaáveis em fases passadas ou quando incia o jogo
         if (PlayerPrefs.HasKey("MaxExperience"))
         {
             maxExperience = PlayerPrefs.GetFloat("MaxExperience");
@@ -58,6 +58,7 @@ public class PlayerExperience : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        //Se a experiencia chegar ao máximo, upa 
         if (currentExperience >= maxExperience)
         {
             experienceImage.fillAmount = 0;
@@ -71,7 +72,7 @@ public class PlayerExperience : MonoBehaviour {
         }
         
     }
-
+    // Adicionar ao player
     public void AddExperience(float experience)
     {
         currentExperience += experience;
@@ -80,6 +81,7 @@ public class PlayerExperience : MonoBehaviour {
 
     }
 
+    // Upar
     void LevelUp()
     {
         levelUp = true;

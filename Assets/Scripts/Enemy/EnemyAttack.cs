@@ -7,7 +7,8 @@ public class EnemyAttack : MonoBehaviour {
     //Dano do inimigo
     public float timeBetweenAttacks = 0.5f;
     public int attackDamage = 10;
-
+    [System.NonSerialized]
+    public int startDamage;
     //Animator anim;
 
     //Classes do player
@@ -26,7 +27,7 @@ public class EnemyAttack : MonoBehaviour {
         playerHealth = player.GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
         //anim = GetComponent<Animator>();
-        
+        startDamage = attackDamage;
     }
 
     // Update is called once per frame
@@ -50,10 +51,12 @@ public class EnemyAttack : MonoBehaviour {
     //Player tocou no inimigo
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == player)
+        if (other.gameObject == player)
         {
+            
             playerInRange = true;
         }
+   
     }
 
 

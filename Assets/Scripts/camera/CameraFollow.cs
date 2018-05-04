@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour {
 	void Start () {
         offset = transform.position - target.position;
 	}
-
+    // Câmera segue o player 
     void FixedUpdate()
     {
         Vector3 targetCamPosition = target.position + offset;

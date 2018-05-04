@@ -9,6 +9,8 @@ public class Save : MonoBehaviour {
     PlayerExperience playerExperience;
     PlayerShooting playerShooting;
 
+    // Colocar todo valor que foi passado de uma fase para outra nas variáveis
+
     private void Awake()
     {
         if (GameObject.FindGameObjectWithTag("Player"))
@@ -20,10 +22,10 @@ public class Save : MonoBehaviour {
 
         }
     }
-    // Use this for initialization
+    // salvar todas as informações que precisamos para a troca de fases 
     public void Saves()
     {
-        PlayerPrefs.SetInt("Score", ScoreManager.score);
+        PlayerPrefs.SetInt("Score", ScoreManager.gold);
         PlayerPrefs.SetInt("Level", playerHealth.playerLevel);
         PlayerPrefs.SetFloat("Experience", playerExperience.currentExperience);
         PlayerPrefs.SetFloat("MaxExperience", playerExperience.maxExperience);

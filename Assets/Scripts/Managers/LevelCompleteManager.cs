@@ -28,6 +28,7 @@ public class LevelCompleteManager : MonoBehaviour {
         
 	}
 
+    // Quando matar todos os inimigos espera 5 segundos e inicia a animação de fase completa
     IEnumerator Espera()
     {
         yield return new WaitForSeconds(5f);

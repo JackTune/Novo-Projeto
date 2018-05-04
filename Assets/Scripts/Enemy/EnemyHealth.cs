@@ -40,7 +40,6 @@ public class EnemyHealth : MonoBehaviour {
     public GameObject damageGO;
 
     //Particulas e Colliders
-    ParticleSystem hitParticle;
     CapsuleCollider capsuleCollider;
 
     //Booleanos
@@ -53,7 +52,6 @@ public class EnemyHealth : MonoBehaviour {
     {
         // anim = GetComponent<Animator>();
         // enemyAudio = GetComponent<AudioSource>();
-        hitParticle = GetComponentInChildren<ParticleSystem>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         damageGO.SetActive(false);
         currentHealth = startingHealth;
@@ -95,7 +93,7 @@ public class EnemyHealth : MonoBehaviour {
 
 
     //Inimigo leva dano
-    public void TakeDamege(int amount, Vector3 hitPoint)
+    public void TakeDamage(int amount)
     {
         enemyTakeDamage = true;
         damageGO.SetActive(true);
@@ -111,11 +109,7 @@ public class EnemyHealth : MonoBehaviour {
 
         // enemyAudio.Play();
 
-        //Animação da particula colidindo
-        hitParticle.transform.position = hitPoint;
-        hitParticle.Play();
-
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Death();
             StartSinking();
@@ -148,12 +142,12 @@ public class EnemyHealth : MonoBehaviour {
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         isSinking = true;
-        ScoreManager.score += scoreValue;
+        ScoreManager.gold += scoreValue;
         Destroy(gameObject, 2f);
     }
 
 
-    
-    
+   
+
 
 }
