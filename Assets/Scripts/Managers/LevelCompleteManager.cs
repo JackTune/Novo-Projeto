@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class LevelCompleteManager : MonoBehaviour {
 
-    public WavesDetails waveDetals;
+
+    public WavesDetails waveDetails;
     public float restartDelay = 5f;
     public Button proxFase;
 
@@ -19,7 +20,9 @@ public class LevelCompleteManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (waveDetals.wave.finish)
+
+        //Verifica se a fase terminou
+        if (waveDetails.wave.finish)
         {
             StartCoroutine(Espera());
             restartTime += Time.deltaTime;

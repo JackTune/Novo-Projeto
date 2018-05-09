@@ -14,6 +14,7 @@ public class UpgradeLvL : MonoBehaviour {
     //UI
     public Button botaoVida;
     public Button botaoAtaque;
+    public GameObject upText;
     public GameObject imageUp;
     public GameObject imageCountPoints;
 
@@ -29,14 +30,15 @@ public class UpgradeLvL : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        
+       
         ButtonsInteractable(false);
 
-
+        //Verifica se o player upou
         if (playerExperience.levelUp)
         {
 
             imageUp.SetActive(true);
+            upText.SetActive(true);
             imageCountPoints.SetActive(true);
             ButtonsInteractable(true);
         }
@@ -49,8 +51,10 @@ public class UpgradeLvL : MonoBehaviour {
         if (playerExperience.levelUp)
         {
             ButtonsInteractable(true);
+            upText.SetActive(true);
             anim.SetBool("LevelUp", true);
             anim.SetBool("LevelUpFalse", false);
+            StartCoroutine(textUp());
         }
         
 
@@ -93,5 +97,11 @@ public class UpgradeLvL : MonoBehaviour {
     {
     botaoAtaque.interactable = ativoOuNao;
     botaoVida.interactable = ativoOuNao;
+    }
+
+    IEnumerator textUp()
+    {
+        yield return new WaitForSeconds(5f);
+        upText.SetActive(false);
     }
 }

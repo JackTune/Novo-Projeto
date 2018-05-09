@@ -23,7 +23,6 @@ public class ScoreManager : MonoBehaviour {
 
         if (PlayerPrefs.HasKey("Score"))
         {
-
             gold = PlayerPrefs.GetInt("Score");
         }
     }

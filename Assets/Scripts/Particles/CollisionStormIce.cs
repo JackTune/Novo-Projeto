@@ -13,13 +13,10 @@ public class CollisionStormIce : MonoBehaviour {
         skills = GM.GetComponent<Skills>();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     private void OnParticleCollision(GameObject other)
     {
+        //Verifica se colidiu com o inimigo
         if (other.gameObject.CompareTag("Enemy"))
         {
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
@@ -28,7 +25,6 @@ public class CollisionStormIce : MonoBehaviour {
             //Caso Exista um enemyHealth naquele objeto
             if (enemyHealth != null)
             {
-                print("Tiro Pegou");
                 enemyHealth.TakeDamage(skills.damageStormIce);
             }
         }

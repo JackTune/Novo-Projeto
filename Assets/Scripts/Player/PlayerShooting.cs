@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour {
+    //Menu
+    ManagerScene managerScene;
+
     //Variables Gun
-    public int damagePerShot = 20;
+    public float damagePerShot = 20;
     public float TimeBetweenBullets = 2f;
 
     PlayerHealth playerHealth;
@@ -18,6 +21,11 @@ public class PlayerShooting : MonoBehaviour {
 
     private void Awake()
     {
+        //Obtém o managerScene para poder obter os modos de jogo
+        managerScene = GameObject.FindGameObjectWithTag("GameController").GetComponent<ManagerScene>();
+        managerScene.GetScenesModeGame();
+
+
         gunParticle = GetComponent<ParticleSystem>();
        // gunLine = GetComponent<LineRenderer>();
       //  gunAudio = GetComponent<AudioSource>();
@@ -27,10 +35,15 @@ public class PlayerShooting : MonoBehaviour {
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("Damage"))
+        //Verifica o modo de jogo
+        if (managerScene.gameMode != "Survival")
         {
-            damagePerShot = PlayerPrefs.GetInt("Damage");
+            if (PlayerPrefs.HasKey("Damage"))
+            {
+                damagePerShot = PlayerPrefs.GetFloat("Damage");
+            }
         }
+        
     }
 
 
@@ -38,7 +51,7 @@ public class PlayerShooting : MonoBehaviour {
     {
         timer += Time.deltaTime;
 
-
+        //Verifica se pode atirar
         if(Input.GetButton ("Fire1") && timer >= TimeBetweenBullets && playerHealth.currentHealth > 0)
         {
             Shoot();
@@ -55,6 +68,7 @@ public class PlayerShooting : MonoBehaviour {
         gunLight.enabled = false;
     }
 
+    //Método atirar
     void Shoot()
     {
         timer = 0f;
@@ -80,7 +94,6 @@ public class PlayerShooting : MonoBehaviour {
             //Caso Exista um enemyHealth naquele objeto
             if(enemyHealth != null)
             {
-                print("Tiro Pegou");
                 enemyHealth.TakeDamage(damagePerShot);
             }
         }

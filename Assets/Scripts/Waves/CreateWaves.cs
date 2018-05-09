@@ -26,11 +26,15 @@ public class CreateWaves : MonoBehaviour {
     private float waveCountDown;
     public Transform[] spawnPoints;
     public PlayerHealth playerHealth;
-    public Text timeText;
-    public float starTime;
-    bool comecarContar;
+
+    //Tempo de Jogo
+    public Text timerText;
+    public float startTimer;
     [System.NonSerialized]
-    public float time;
+    public float auxTimer;
+    string timerString;
+    int seconds, minutes;
+    bool comecarContar;
 
     //Auxiliares do WavesDetails
     [System.NonSerialized]
@@ -56,21 +60,33 @@ public class CreateWaves : MonoBehaviour {
         waveCountDown = timeBetweenWaves;
         numberWave = nextWave;
         countTempo = (int)waveCountDown;
-        time = starTime;
-        timeText.text = "" + (int)time;
+
+        //Setando o tempo
+        auxTimer = startTimer;
+        seconds = (int)(startTimer % 60);
+        minutes = (int)(startTimer / 60) % 60;
+        timerString = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = timerString;
 
     }
 
     private void Update()
     {
+
+        //Setando o tempo
         if (comecarContar)
         {
-            time -= Time.deltaTime;
-            timeText.text = "" + (int)time;
-            if (time <= 0)
+            auxTimer -= Time.deltaTime;
+            seconds = (int)(auxTimer % 60);
+            minutes = (int)(auxTimer / 60) % 60;
+
+            timerString = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timerText.text = timerString;
+            
+            if (auxTimer <= 0)
             {
                 print("Entrou no if de time");
-                GameOverManager.timeGamveOver = true;
+                GameOverManager.timeGameOver = true;
                 comecarContar = false;
             }
         }
@@ -136,7 +152,8 @@ public class CreateWaves : MonoBehaviour {
         }
         else
         {
-            time = starTime + 1;
+            comecarContar = false;
+            auxTimer = startTimer;
             waveComplete = true;
             nextWave++;
             numberWave = nextWave;
@@ -175,6 +192,7 @@ public class CreateWaves : MonoBehaviour {
         for (int i = 0; i < wave.count; i++)
         {
             int spawnRandomIndex = Random.Range(0, wave.enemies.Length);
+            //Inimigo Randomizado
             SpawnEnemy(wave.enemies[spawnRandomIndex]);
             yield return new WaitForSeconds(1f * wave.rate);
         }

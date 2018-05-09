@@ -11,10 +11,12 @@ public class EnemyMovement : MonoBehaviour {
     EnemyHealth enemyHealth;
     EnemyAttack enemyAttack;
 
+    //GM
     GameObject GM;
     Skills skills;
-
+    //Congelar
     public int timeOfFreeze;
+
     //IA
     NavMeshAgent nav;
     float startSpeed;
@@ -25,7 +27,7 @@ public class EnemyMovement : MonoBehaviour {
     // Use this for initialization
     private void Awake()
     {
-        //pegar a posição do player
+        //Encontrar o Objeto do Player e seus componentes
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerHealth = player.GetComponent<PlayerHealth>();
         enemyAttack = GetComponent<EnemyAttack>();
@@ -33,7 +35,7 @@ public class EnemyMovement : MonoBehaviour {
         nav = GetComponent<NavMeshAgent>();
         startSpeed = nav.speed;
 
-        //pegadondo o obejeto da classe skills
+        //Pegando o objeto da classe skills
         GM = GameObject.FindGameObjectWithTag("GameController");
         skills = GM.GetComponent<Skills>();
     }
@@ -41,6 +43,7 @@ public class EnemyMovement : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        //Verifica se o player e o inimigo estão vivos, para assim o inimigo seguir o Player
         if (playerHealth.currentHealth > 0 && enemyHealth.currentHealth > 0)
         {
             nav.SetDestination(player.position);
@@ -51,9 +54,10 @@ public class EnemyMovement : MonoBehaviour {
         }
 	}
 
-
+    //Colisões
     private void OnTriggerEnter(Collider other)
     {
+        //Caso o inimigo colida com a skill "StormIce"
         if(other.CompareTag("StormIce") && entrouNoColliderStormIce)
         {
             
@@ -61,12 +65,14 @@ public class EnemyMovement : MonoBehaviour {
             entrouNoColliderStormIce = false;
         }
 
-        if(other.CompareTag("BlackHole") && entrouNoColliderBlackHole)
+        //Caso o inimigo colida com a skill "BlackHole"
+        if (other.CompareTag("BlackHole") && entrouNoColliderBlackHole)
         {
             StartCoroutine(BlackHole());
             entrouNoColliderBlackHole = false;
         }
 
+        //Caso o inimigo colida com a skill "Freeze"
         if (other.CompareTag("Congelar"))
         {
             StartCoroutine(Congelar(timeOfFreeze));
@@ -75,8 +81,9 @@ public class EnemyMovement : MonoBehaviour {
     }
 
   
+    /*IEnumerators*/
 
-
+    //Faz mudanças no ataque e movimentação do inimigo
     IEnumerator Congelar(int time)
     {
         enemyAttack.attackDamage = 0;
@@ -87,6 +94,7 @@ public class EnemyMovement : MonoBehaviour {
         nav.speed = startSpeed;
     }
 
+    //Deixa o inimigo lento
     IEnumerator StormIce()
     {
 
@@ -103,6 +111,7 @@ public class EnemyMovement : MonoBehaviour {
 
     }
 
+    //Deixa o inimigo lento
     IEnumerator BlackHole()
     {
 

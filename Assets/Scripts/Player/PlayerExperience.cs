@@ -34,7 +34,7 @@ public class PlayerExperience : MonoBehaviour {
 
     void Start()
     {
-        // Pegar valor das variaáveis em fases passadas ou quando incia o jogo
+        // Pegar valor das variáveis em fases passadas ou quando incia o jogo
         if (PlayerPrefs.HasKey("MaxExperience"))
         {
             maxExperience = PlayerPrefs.GetFloat("MaxExperience");

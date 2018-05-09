@@ -8,6 +8,7 @@ TagManager:
   - Congelar
   - StormIce
   - BlackHole
+  - Canvas
   layers:
   - Default
   - TransparentFX

@@ -14,8 +14,11 @@ public class PauseScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //Verifica se o Esc foi clicado
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            //Verifica se está pausado
             if (gameIsPaused)
             {
                 Return();
@@ -27,7 +30,7 @@ public class PauseScript : MonoBehaviour {
         }
 	}
 
-
+    //Retorna ao game, propriamente dito.
     public void Return()
     {
         pauseMenuUI.SetActive(false);
@@ -35,6 +38,7 @@ public class PauseScript : MonoBehaviour {
         gameIsPaused = false;
     }
 
+    //Pausa o game, mostrando suas funções de pause
     void Pause()
     {
         pauseMenuUI.SetActive(true);
@@ -42,29 +46,35 @@ public class PauseScript : MonoBehaviour {
         gameIsPaused = true;
     }
 
+    //OnClick para voltar ao MenuPrincipal
     public void MainMenuButton()
     {
         SceneManager.LoadScene("MenuPrincipal");
 
     }
 
+    //Mostrar as configurações
     public void Options()
     {
         ButtonsHiddenOrShow(false);
         activeOptions.SetActive(true);
     }
 
+    //OnClick para voltar para a tela "Pause"
     public void Back()
     {
         activeOptions.SetActive(false);
         ButtonsHiddenOrShow(true);
     }
 
+    //OnClick para sair do jogo
     public void ExitGame()
     {
         Application.Quit();
     }
 
+
+    //Metódo feito para ativar ou desativar os utiliários do canvas.
     void ButtonsHiddenOrShow(bool boolean)
     {
         buttonReturn.gameObject.SetActive(boolean);

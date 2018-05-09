@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
 
+    //Menu
+    ManagerScene managerScene;
 
     //Vida do player
     public float startingHealth;
@@ -36,9 +38,12 @@ public class PlayerHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+        //Obtém o managerScene para poder obter os modos de jogo
+        managerScene = GameObject.FindGameObjectWithTag("GameController").GetComponent<ManagerScene>();
+        managerScene.GetScenesModeGame();
 
-    //    anim = GetComponent<Animator>();
-    //    playerAudio = GetComponent<AudioSource>();
+        //    anim = GetComponent<Animator>();
+        //    playerAudio = GetComponent<AudioSource>();
         player = GetComponent<PlayerController>();
         playerShooting = GetComponentInChildren<PlayerShooting>();
 
@@ -46,14 +51,13 @@ public class PlayerHealth : MonoBehaviour {
 
     private void Start()
     {
-        /*if (PlayerPrefs.HasKey("Level"))
+        //Verifica o modo de jogo
+        if (managerScene.gameMode != "Survival")
         {
-            
-            playerLevel = PlayerPrefs.GetInt("Level");
-        }*/
-        if (PlayerPrefs.HasKey("MaxHealth"))
-        {
-            maxHealth = PlayerPrefs.GetFloat("MaxHealth");
+            if (PlayerPrefs.HasKey("MaxHealth"))
+            {
+                maxHealth = PlayerPrefs.GetFloat("MaxHealth");
+            }
         }
 
         startingHealth = maxHealth;
@@ -62,6 +66,8 @@ public class PlayerHealth : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        //Se levou dano
         if (dameged)
         {
                 damageImage.color = flashColour;
@@ -80,8 +86,8 @@ public class PlayerHealth : MonoBehaviour {
     {
         dameged = true;
 
+        //Seta a barra de vida no canvas
         currentHealth -= amount;
-
         imageHealth.fillAmount = currentHealth / maxHealth;
         
         //  playerAudio.Play();

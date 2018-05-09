@@ -294,6 +294,8 @@
     <Compile Include="Assets\Scripts\Managers\EnemyManeger.cs" />
     <Compile Include="Assets\Scripts\Managers\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\Managers\LevelCompleteManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\LevelSelector.cs" />
+    <Compile Include="Assets\Scripts\Managers\Mana.cs" />
     <Compile Include="Assets\Scripts\Managers\ManagerScene.cs" />
     <Compile Include="Assets\Scripts\Managers\PauseScript.cs" />
     <Compile Include="Assets\Scripts\Managers\Save.cs" />
@@ -310,6 +312,7 @@
     <Compile Include="Assets\Scripts\Waves\BillBoardScript.cs" />
     <Compile Include="Assets\Scripts\Waves\CreateWaves.cs" />
     <Compile Include="Assets\Scripts\Waves\WavesDetails.cs" />
+    <Compile Include="Assets\WavesDetailsSurvival.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\1_BlackHole\Shaders\Add.shader" />

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114268406397219834}
   - component: {fileID: 114406398160789578}
   - component: {fileID: 114478937383828816}
+  - component: {fileID: 114081684377174024}
   m_Layer: 0
   m_Name: GM
   m_TagString: GameController
@@ -42,6 +43,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114081684377174024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887750717963898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7832ac93b79656241949fdde35b773e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qntAddBuff: 50
+  qntForActiveFury: 15
+  timeOfFury: 10
+  furyImage: {fileID: 0}
+  particleFury: {fileID: 0}
+  particleIceExplosion: {fileID: 0}
+  IceExplosionColider: {fileID: 0}
+  imageSkillFreeze: {fileID: 0}
+  timeForActiveSkillFreeze: 10
+  damageFreeze: 10
+  costManaFreeze: 20
+  particleStormIce: {fileID: 0}
+  StormIceColider: {fileID: 0}
+  imageSkillStormIce: {fileID: 0}
+  timeForActiveSkillStormIce: 15
+  damageStormIce: 10
+  costManaStormIce: 30
+  particleBlackHole: {fileID: 0}
+  blackHoleColider: {fileID: 0}
+  imageSkillBlackHole: {fileID: 0}
+  timeForActiveBlackHole: 20
+  damageBlackHole: 10
+  animBlackHole: {fileID: 0}
+  costManaBlackHole: 70
 --- !u!114 &114268406397219834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,14 +90,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves: []
-  timeBetweenWaves: 0
+  timeBetweenWaves: 5
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   playerHealth: {fileID: 0}
-  timeText: {fileID: 0}
-  starTime: 0
+  timerText: {fileID: 0}
+  startTimer: 180
 --- !u!114 &114406398160789578
 MonoBehaviour:
   m_ObjectHideFlags: 1

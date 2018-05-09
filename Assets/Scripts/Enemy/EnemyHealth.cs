@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemyHealth : MonoBehaviour {
+
+    //Menu
+    MENU menu;
 
     //Vida do Inimigo
     public float startingHealth = 100;
@@ -16,13 +20,11 @@ public class EnemyHealth : MonoBehaviour {
     //Pontos que o inimigo dá
     public int scoreValue = 10;
 
-    //Modificações
-
-
-    float experienceValue = 10;
+    //Váriaveis do Player para Upar
+    public float experienceValue = 10;
     GameObject player;
     PlayerExperience playerExperience;
-
+    WavesDetailsSurvival wavesDetailsSurvival;
 
     //Modificações
 
@@ -32,8 +34,10 @@ public class EnemyHealth : MonoBehaviour {
     //Animator anim;
     // AudioSource enemyAudio;
 
-
-
+    //GM
+    GameObject GM;
+    Skills skills;
+    ManagerScene gmManagerScene;
 
     //Levar dano
     public Image damageImage;
@@ -50,6 +54,19 @@ public class EnemyHealth : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
+        //Pegar os objetos do GM, e setar as skills e o ManagerScene
+        GM = GameObject.FindGameObjectWithTag("GameController");
+        skills = GM.GetComponent<Skills>();
+        gmManagerScene = GM.GetComponent<ManagerScene>();
+        gmManagerScene.GetScenesModeGame();
+
+        //Verificar se o modo de jogo é survival
+        if (gmManagerScene.gameMode == "Survival")
+        {
+            print("Entrou no if");
+            wavesDetailsSurvival = GameObject.FindGameObjectWithTag("Canvas").GetComponent<WavesDetailsSurvival>();
+        }
+
         // anim = GetComponent<Animator>();
         // enemyAudio = GetComponent<AudioSource>();
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -66,15 +83,12 @@ public class EnemyHealth : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
-        
-
+        //Se Ele estiver morto, descendo no chão.
         if (isSinking)
         {
             transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
            
         }
-
 
         //Enemy esconde a life bar
         if (enemyTakeDamage)
@@ -93,7 +107,7 @@ public class EnemyHealth : MonoBehaviour {
 
 
     //Inimigo leva dano
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         enemyTakeDamage = true;
         damageGO.SetActive(true);
@@ -103,7 +117,7 @@ public class EnemyHealth : MonoBehaviour {
             return;
         }
 
-        
+        //Mostrar na lifebar do inimigo
         currentHealth -= amount;
         damageImage.fillAmount = currentHealth / startingHealth;
 
@@ -123,15 +137,36 @@ public class EnemyHealth : MonoBehaviour {
 
         capsuleCollider.isTrigger = true;
 
-        //WavesDetails
-        WavesDetails.countEnemies--;
-        WavesDetails.isDeadEnemy = true;
+        //Mortes para ativar a furia
+        if (skills.isUsingFury == false)
+        {
+            skills.currentForActiveFury++;
+            skills.AddFury();
+        }
+
+        //Modos de Jogo
+        if (gmManagerScene.gameMode == "Survival")
+        {
+            print("Entrou");
+            //Modo Survival
+            wavesDetailsSurvival.qntKillsEnemy++;
+            wavesDetailsSurvival.qntGold += scoreValue;
+        }
+        else
+        {
+            //Modo Arcade
+            //WavesDetails
+            WavesDetails.countEnemies--;
+            WavesDetails.isDeadEnemy = true;
+            playerExperience.AddExperience(experienceValue);
+
+        }
 
 
-        playerExperience.AddExperience(experienceValue);
+
         //anim.SetTrigger ("Dead");
 
-       // enemyAudio.clip = deathClip;
+        // enemyAudio.clip = deathClip;
         //enemyAudio.Play();
     }
 

@@ -9,6 +9,8 @@ public class DelleteAll : MonoBehaviour {
         PlayerPrefs.DeleteKey("Experience");
         PlayerPrefs.DeleteKey("Level");
         PlayerPrefs.DeleteKey("Score");
+        PlayerPrefs.DeleteKey("Damage");
+        PlayerPrefs.DeleteKey("MaxExperience");
     }
    
 }

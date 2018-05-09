@@ -37,6 +37,7 @@ public class SettingsMenu : MonoBehaviour {
 
         resolutionsDropDown.AddOptions(options);
 
+        //Verifica se exitem os playerPrefs, caso não, usa o padrão
         if (PlayerPrefs.HasKey("Resolution"))
         {
             resolutionIndexValue = PlayerPrefs.GetInt("Resolution");
@@ -50,7 +51,7 @@ public class SettingsMenu : MonoBehaviour {
             
         }
 
-
+        //Verifica se exitem os playerPrefs, caso não, usa o padrão
         if (PlayerPrefs.HasKey("Volume"))
         {
             volumeValue = PlayerPrefs.GetFloat("Volume");
@@ -62,6 +63,7 @@ public class SettingsMenu : MonoBehaviour {
             volumeSlider.value = 1;
         }
 
+        //Verifica se exitem os playerPrefs, caso não, usa o padrão
         if (PlayerPrefs.HasKey("Quality"))
         {
             qualityIndexValue = PlayerPrefs.GetInt("Quality");
@@ -73,6 +75,7 @@ public class SettingsMenu : MonoBehaviour {
             qualitiesDropDown.value = 2;
         }
 
+        //Verifica se exitem os playerPrefs, caso não, usa o padrão
         if (PlayerPrefs.HasKey("WindowMode"))
         {
             windowModeValue = PlayerPrefs.GetInt("WindowMode");
@@ -93,13 +96,14 @@ public class SettingsMenu : MonoBehaviour {
 
     }
 
-
+    //Setar o volume
     public void SetVolume(float volume)
     {
         volumeValue = volume;
         AudioListener.volume = volume;
     }
 
+    //Setar a resolução do jogo
     public void SetResolution(int resolutionIndex)
     {
         resolutionIndexValue = resolutionIndex;
@@ -107,12 +111,14 @@ public class SettingsMenu : MonoBehaviour {
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
+    //Setar a qualidade do jogo
     public void SetQuality(int qualityIndex)
     {
         qualityIndexValue = qualityIndex;
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
+    //Mudar o modo Janela ou não
     public void SetWindowMode(bool isWindowMode)
     {
         if (isWindowMode)
@@ -126,6 +132,7 @@ public class SettingsMenu : MonoBehaviour {
         Screen.fullScreen = !isWindowMode;
     }
 
+    //Salvar as preferências do player
     public void Save()
     {
         PlayerPrefs.SetFloat("Volume", volumeValue);

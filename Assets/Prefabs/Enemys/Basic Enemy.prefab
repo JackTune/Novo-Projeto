@@ -225,6 +225,7 @@ MonoBehaviour:
   currentHealth: 0
   sinkSpeed: 2.5
   scoreValue: 10
+  experienceValue: 10
   damageImage: {fileID: 114603475761064000}
   damageGO: {fileID: 1550516978666994}
 --- !u!114 &114237020747921878

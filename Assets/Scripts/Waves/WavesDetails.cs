@@ -33,6 +33,7 @@ public class WavesDetails : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+        //Quantidade de Inimigos Vivos, e mostrando no canvas
         if (isDeadEnemy)
         {
             enemiesAlive.text = "" + countEnemies;
@@ -57,6 +58,7 @@ public class WavesDetails : MonoBehaviour {
             animTextWaveComplete.SetBool("WaveComplete", false);
         }
 
+        //Se a wave foi completada
         if (wave.finish)
         {
             qntWaves.text = "Level Completado";

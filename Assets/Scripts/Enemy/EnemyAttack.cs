@@ -35,6 +35,7 @@ public class EnemyAttack : MonoBehaviour {
     {
         timer += Time.deltaTime;
 
+        //Caso o inimigo possa atacar denovo
         if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
         {
             Attack();

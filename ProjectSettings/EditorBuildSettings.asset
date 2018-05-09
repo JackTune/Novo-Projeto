@@ -9,17 +9,23 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuPrincipal.unity
     guid: 93184d94eb1d6714abcaa889251c6cb2
   - enabled: 1
+    path: Assets/Scenes/SelectLevel.unity
+    guid: 7c8f917db3fbebc459cc999b427c2a67
+  - enabled: 1
+    path: Assets/Scenes/Survival.unity
+    guid: 0a50e3550fbcb65499aa5a21b71d156c
+  - enabled: 1
     path: Assets/Scenes/Cena1.unity
     guid: aa0b25ce7c566894180f25b29713f0ba
   - enabled: 1
     path: Assets/Scenes/Cena2.unity
-    guid: 02d148a391a9c344cb13b81b1314c2b7
+    guid: 40a3581749eb7644184f4fc6ab800eac
   - enabled: 1
     path: Assets/Scenes/Cena3.unity
-    guid: 9446eba035b154f47b6fb20686ff23df
+    guid: 509e1dbb706edb04689998614ddbdb44
   - enabled: 1
     path: Assets/Scenes/Cena4.unity
-    guid: 2709fd67641c5a24da2b9bdba74e5436
+    guid: 9894837142bf75343853be23576b7c9b
   - enabled: 1
     path: Assets/Scenes/Cena5.unity
-    guid: 0839e97c7a376d0408d664d9c3a3241b
+    guid: b1e496e8239a6e94aa5e53acd6cbff5e

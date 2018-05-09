@@ -7,9 +7,11 @@ public class ManagerScene : MonoBehaviour {
     //Código usado para troca de fases, no caso para passar de fase e dar restart
 
     Save salvar;
-  
 
-	string nomeCena;
+    [System.NonSerialized]
+    public string gameMode;
+
+    string nomeCena;
 
     private void Awake()
     {
@@ -30,11 +32,26 @@ public class ManagerScene : MonoBehaviour {
 
 	}
 
+    //Deletar todos os playerPrefs e começar um novo jogo
     public void NovoGame(string cena)
     {
         nomeCena = cena;
         StartCoroutine(AbrirCena());
         DelleteAll.DeleteAll();
     }
+
+    //Obter qual a sena jogada no momento e verificar seu modo de jogo.
+    public void GetScenesModeGame()
+    {
+        if (SceneManager.GetSceneByName("Survival").IsValid())
+        {
+            gameMode = "Survival";
+        }
+        else
+        {
+            gameMode = "Arcade";
+        }
+    }
+
 }
 

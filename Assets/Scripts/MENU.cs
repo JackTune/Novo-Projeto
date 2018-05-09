@@ -8,10 +8,12 @@ using System.Linq;
 public class MENU : MonoBehaviour
 {
     public Button buttonStart, buttonOptions, buttonQuit;
-    public GameObject options;
+    public GameObject options, gamesMode;
+
+    public string gameMode;
 
 
-
+    //---- Voids Clicks ----//
     public void Options()
     {
         ButtonsActive(false);
@@ -19,12 +21,25 @@ public class MENU : MonoBehaviour
         options.SetActive(true);
     }
 
-    public void Back()
+    public void GamesMode()
+    {
+        gamesMode.SetActive(true);
+        ButtonsActive(false);
+    }
+
+    public void BackInOptions()
     {
         options.SetActive(false);
         ButtonsActive(true);
-       
     }
+
+    public void BackInGamesMode()
+    {
+        gamesMode.SetActive(false);
+        ButtonsActive(true);
+
+    }
+
 
     // espera um tempo para abrir opções 
     private IEnumerator AbrirOpcoes()
@@ -33,6 +48,7 @@ public class MENU : MonoBehaviour
 
     }
 
+    //Ativar os botões do menuPrincipal
     void ButtonsActive(bool boolean)
     {
         buttonStart.gameObject.SetActive(boolean);

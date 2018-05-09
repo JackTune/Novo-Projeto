@@ -29,7 +29,7 @@ public class Save : MonoBehaviour {
         PlayerPrefs.SetInt("Level", playerHealth.playerLevel);
         PlayerPrefs.SetFloat("Experience", playerExperience.currentExperience);
         PlayerPrefs.SetFloat("MaxExperience", playerExperience.maxExperience);
-        PlayerPrefs.SetInt("Damage", playerShooting.damagePerShot);
+        PlayerPrefs.SetFloat("Damage", playerShooting.damagePerShot);
         PlayerPrefs.SetFloat("MaxHealth", playerHealth.maxHealth);
     }
 }
