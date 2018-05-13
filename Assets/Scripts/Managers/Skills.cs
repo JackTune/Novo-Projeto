@@ -11,6 +11,7 @@ public class Skills : MonoBehaviour {
     EnemyHealth enemyHealth;
     Mana mana;
     GameObject gm;
+    PotionsScript playerPotions;
 
     //Fury
     [System.NonSerialized]
@@ -87,6 +88,8 @@ public class Skills : MonoBehaviour {
 
     private void Awake()
     {
+        playerPotions = GameObject.FindGameObjectWithTag("Canvas").GetComponent<PotionsScript>();
+
         //Obtém o Player e seus componentes
         player = GameObject.FindGameObjectWithTag("Player");
         mana = player.GetComponent<Mana>();
@@ -215,6 +218,8 @@ public class Skills : MonoBehaviour {
     /*Método das Skills*/
     void UseSkills()
     {
+
+
         // condição de poder usar o congelar e se usar as coisas que acontecem
         if (Input.GetKeyDown(KeyCode.Space) && canUseFreeze == true && mana.currentMana >= costManaFreeze)
         {
@@ -361,12 +366,18 @@ public class Skills : MonoBehaviour {
         timeForActiveSkillStormIce = auxBuffForStormIce;
         timeForActiveBlackHole = auxBuffForBlackHole;
         mana.manaGainForSecond = auxMana;
-        
+        consumeFury = timeOfFury;
     }
 
     //Usar a fúria
     void UseFury()
     {
+        if (playerPotions.playerCanUsePower)
+        {
+            AddFury();
+            playerPotions.playerCanUsePower = false;
+        }
+
         //Verifica se a barra de fúria está cheia
         if (currentForActiveFury >= qntForActiveFury)
         {

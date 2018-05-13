@@ -718,12 +718,17 @@ Prefab:
     - target: {fileID: 114268406397219834, guid: b8143ed4acb00b844b3228f3d8fd44c4,
         type: 2}
       propertyPath: waves.Array.data[1].count
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114268406397219834, guid: b8143ed4acb00b844b3228f3d8fd44c4,
         type: 2}
       propertyPath: waves.Array.data[1].rate
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114081684377174024, guid: b8143ed4acb00b844b3228f3d8fd44c4,
+        type: 2}
+      propertyPath: qntForActiveFury
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8143ed4acb00b844b3228f3d8fd44c4, type: 2}
@@ -780,6 +785,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1796846523}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1051227688 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114334208371829220, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
+    type: 2}
+  m_PrefabInternal: {fileID: 1811274471}
+  m_Script: {fileID: 11500000, guid: 57bd8118ff3ff73429405b861d2f4673, type: 3}
 --- !u!1 &1079494846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,21 +1462,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 20205637865767638, guid: 65254e164ee295d43a368f95c6f2d777,
-        type: 2}
-      propertyPath: orthographic size
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 114916857566611930, guid: 65254e164ee295d43a368f95c6f2d777,
         type: 2}
       propertyPath: target
       value: 
       objectReference: {fileID: 549193596}
-    - target: {fileID: 20205637865767638, guid: 65254e164ee295d43a368f95c6f2d777,
-        type: 2}
-      propertyPath: orthographic
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65254e164ee295d43a368f95c6f2d777, type: 2}
   m_IsPrefabParent: 0
@@ -1611,12 +1612,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1710253533 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114334208371829220, guid: ac0a3cb4f9ddbe3439e93e72f0893a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 1811274471}
-  m_Script: {fileID: 11500000, guid: 57bd8118ff3ff73429405b861d2f4673, type: 3}
 --- !u!1001 &1796846523
 Prefab:
   m_ObjectHideFlags: 0
@@ -1714,7 +1709,12 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114999570981265480, guid: b4e8753a098117342a513dc82d122a9b,
+    - target: {fileID: 114253595645444072, guid: b4e8753a098117342a513dc82d122a9b,
+        type: 2}
+      propertyPath: wave
+      value: 
+      objectReference: {fileID: 493578049}
+    - target: {fileID: 114561805085211240, guid: b4e8753a098117342a513dc82d122a9b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1724,7 +1724,12 @@ Prefab:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 549193598}
-    - target: {fileID: 114561805085211240, guid: b4e8753a098117342a513dc82d122a9b,
+    - target: {fileID: 114216144709349040, guid: b4e8753a098117342a513dc82d122a9b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 493578052}
+    - target: {fileID: 114999570981265480, guid: b4e8753a098117342a513dc82d122a9b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1733,17 +1738,12 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1710253533}
-    - target: {fileID: 114253595645444072, guid: b4e8753a098117342a513dc82d122a9b,
-        type: 2}
-      propertyPath: wave
-      value: 
-      objectReference: {fileID: 493578049}
+      objectReference: {fileID: 1051227688}
     - target: {fileID: 114119607352811200, guid: b4e8753a098117342a513dc82d122a9b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1710253533}
+      objectReference: {fileID: 1051227688}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4e8753a098117342a513dc82d122a9b, type: 2}
   m_IsPrefabParent: 0

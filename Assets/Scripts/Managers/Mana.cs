@@ -12,8 +12,11 @@ public class Mana : MonoBehaviour {
     public float manaGainForSecond = 1f;
     float countRealTime;
 
+    PotionsScript playerPotions;
+
     // Use this for initialization
     void Start () {
+        playerPotions = GameObject.FindGameObjectWithTag("Canvas").GetComponent<PotionsScript>();
         currentMana = startMana;
 	}
 	
@@ -26,6 +29,10 @@ public class Mana : MonoBehaviour {
         {
             countRealTime = 0;
             SomarMana();
+        }else if (playerPotions.playerCanGainMana)
+        {
+            manaImage.fillAmount = currentMana / startMana;
+            playerPotions.playerCanGainMana = false;
         }
 
 	}

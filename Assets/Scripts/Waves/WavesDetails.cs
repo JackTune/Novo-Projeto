@@ -5,27 +5,27 @@ using UnityEngine.UI;
 
 public class WavesDetails : MonoBehaviour {
 
-    public Text qntWaves;
-    public Text enemiesAlive;
+    public Text qntWavesText;
+    public Text numberWaveText;
+    bool entrouNaWave;
+    public Text enemiesAliveText;
     public CreateWaves wave;
     int waveAnterior = 0;
     int time;
     public Animator animTextWaveComplete;
     public static int countEnemies;
     public static bool isDeadEnemy;
-    
-   
-    
-
+    LevelCompleteManager levelComplete;
 
     // Use this for initialization
     void Start () {
+        levelComplete = GetComponent<LevelCompleteManager>();
 
-        qntWaves.text = "Waves: "+ (wave.numberWave + 1) + "/" + wave.waves.Length;
+        qntWavesText.text = "Waves: "+ (wave.numberWave + 1) + "/" + wave.waves.Length;
         animTextWaveComplete.SetBool("WaveComplete", true);
-        
+        StartCoroutine(NumberWave());
         countEnemies = wave.waves[wave.numberWave].count;
-        enemiesAlive.text = "" + wave.waves[wave.numberWave].count;
+        enemiesAliveText.text = "" + wave.waves[wave.numberWave].count;
         
         
     }
@@ -36,7 +36,7 @@ public class WavesDetails : MonoBehaviour {
         //Quantidade de Inimigos Vivos, e mostrando no canvas
         if (isDeadEnemy)
         {
-            enemiesAlive.text = "" + countEnemies;
+            enemiesAliveText.text = "" + countEnemies;
         }
 
 
@@ -44,24 +44,32 @@ public class WavesDetails : MonoBehaviour {
         if (wave.numberWave > waveAnterior)
         {
             countEnemies = wave.waves[wave.numberWave].count;
-            qntWaves.text = "Waves: " + (wave.numberWave + 1) + "/" + wave.waves.Length;
+            qntWavesText.text = "Waves: " + (wave.numberWave + 1) + "/" + wave.waves.Length;
             waveAnterior++;
         }
 
         if (wave.waveComplete)
         {
-            animTextWaveComplete.SetBool("WaveComplete", true);
 
+            animTextWaveComplete.SetBool("WaveComplete", true);
+            if (entrouNaWave)
+            {
+                StartCoroutine(NumberWave());
+            }
+            
+            entrouNaWave = false;
         }
         else
         {
+            entrouNaWave = true;
             animTextWaveComplete.SetBool("WaveComplete", false);
         }
 
         //Se a wave foi completada
         if (wave.finish)
         {
-            qntWaves.text = "Level Completado";
+            levelComplete.WinLevel();
+            qntWavesText.text = "Level Completado";
             animTextWaveComplete.SetBool("WaveComplete", true);
 
         }           
@@ -69,5 +77,12 @@ public class WavesDetails : MonoBehaviour {
 
 	}
 
+    IEnumerator NumberWave()
+    {
+        numberWaveText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(wave.timeBetweenWaves);
+        numberWaveText.text = qntWavesText.text;
+        numberWaveText.gameObject.SetActive(true);
+    }
     
 }

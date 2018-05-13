@@ -12,6 +12,8 @@ public class GameOverManager : MonoBehaviour {
     public Button restart;
     public Button backMenu;
     public static bool timeGameOver;
+    [System.NonSerialized]
+    public bool gameOver = false;
 
     
 	Animator anim;
@@ -39,6 +41,7 @@ public class GameOverManager : MonoBehaviour {
 
         //Quando o player morrer
 		if (playerHealth.currentHealth <= 0 || timeGameOver == true) {
+            gameOver = true;
 			anim.SetTrigger ("GameOver");
             restartTime += Time.deltaTime;
             if (managerScene.gameMode == "Survival")
@@ -50,4 +53,5 @@ public class GameOverManager : MonoBehaviour {
         
 	}
 
+    
 }

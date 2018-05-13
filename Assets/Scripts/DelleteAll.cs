@@ -11,6 +11,10 @@ public class DelleteAll : MonoBehaviour {
         PlayerPrefs.DeleteKey("Score");
         PlayerPrefs.DeleteKey("Damage");
         PlayerPrefs.DeleteKey("MaxExperience");
+        PlayerPrefs.DeleteKey("MaxHealth");
+        PlayerPrefs.DeleteKey("QntPotionHP");
+        PlayerPrefs.DeleteKey("QntPotionMana");
+        PlayerPrefs.DeleteKey("levelReacher");
     }
    
 }

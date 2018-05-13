@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Save : MonoBehaviour {
 
+    GameObject canvas;
+    PotionsScript potions;
     GameObject player;
     PlayerHealth playerHealth;
     PlayerExperience playerExperience;
@@ -13,6 +15,9 @@ public class Save : MonoBehaviour {
 
     private void Awake()
     {
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
+        potions = canvas.GetComponent<PotionsScript>();
+
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -31,5 +36,8 @@ public class Save : MonoBehaviour {
         PlayerPrefs.SetFloat("MaxExperience", playerExperience.maxExperience);
         PlayerPrefs.SetFloat("Damage", playerShooting.damagePerShot);
         PlayerPrefs.SetFloat("MaxHealth", playerHealth.maxHealth);
+        PlayerPrefs.SetInt("QntPotionHP", potions.potionHP.qntPotions);
+        PlayerPrefs.SetInt("QntPotionMana", potions.potionMana.qntPotions);
+        PlayerPrefs.SetInt("QntPower", potions.power.qntPotions);
     }
 }

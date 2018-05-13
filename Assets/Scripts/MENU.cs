@@ -10,8 +10,6 @@ public class MENU : MonoBehaviour
     public Button buttonStart, buttonOptions, buttonQuit;
     public GameObject options, gamesMode;
 
-    public string gameMode;
-
 
     //---- Voids Clicks ----//
     public void Options()

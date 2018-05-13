@@ -9,7 +9,11 @@ public class LevelCompleteManager : MonoBehaviour {
     public WavesDetails waveDetails;
     public float restartDelay = 5f;
     public Button proxFase;
-
+    [System.NonSerialized]
+    public bool levelComplete = false;
+    public int levelToUnlock;
+    
+    
     Animator anim;
     float restartTime;
     // Use this for initialization
@@ -25,6 +29,7 @@ public class LevelCompleteManager : MonoBehaviour {
         if (waveDetails.wave.finish)
         {
             StartCoroutine(Espera());
+            levelComplete = true;
             restartTime += Time.deltaTime;
             proxFase.interactable = true;
         }
@@ -36,5 +41,10 @@ public class LevelCompleteManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(5f);
         anim.SetTrigger("LevelComplete");
+    }
+
+    public void WinLevel()
+    {
+        PlayerPrefs.SetInt("levelReacher", levelToUnlock);
     }
 }

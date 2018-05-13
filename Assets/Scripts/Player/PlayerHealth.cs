@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour {
     // AudioSource playerAudio;
     PlayerController player;
     PlayerShooting playerShooting;
+    PotionsScript playerPotions;
 
 
     //Booleanos
@@ -42,6 +43,7 @@ public class PlayerHealth : MonoBehaviour {
         managerScene = GameObject.FindGameObjectWithTag("GameController").GetComponent<ManagerScene>();
         managerScene.GetScenesModeGame();
 
+        playerPotions = GameObject.FindGameObjectWithTag("Canvas").GetComponent<PotionsScript>();
         //    anim = GetComponent<Animator>();
         //    playerAudio = GetComponent<AudioSource>();
         player = GetComponent<PlayerController>();
@@ -66,6 +68,12 @@ public class PlayerHealth : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        if (playerPotions.playerCanCure)
+        {
+            imageHealth.fillAmount = currentHealth / maxHealth;
+            playerPotions.playerCanCure = false;
+        }
 
         //Se levou dano
         if (dameged)
