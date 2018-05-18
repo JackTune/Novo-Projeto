@@ -19,14 +19,15 @@ public class ManagerScene : MonoBehaviour {
     }
     public void ChangeScene (string cena){
 		nomeCena = cena;
-		StartCoroutine (AbrirCena());
-	}
+        //StartCoroutine (AbrirCena());
+        AbrirCena();
+    }
     
     //Quando clicar no botão, espera meio segundo e depois vai para a cena indicada.
 
-    private IEnumerator AbrirCena(){
+    private void AbrirCena(){
 
-		yield return new WaitForSeconds (0.5f);
+		//yield return new WaitForSeconds (0.5f);
 		SceneManager.LoadScene (nomeCena);
 
 	}
@@ -35,15 +36,17 @@ public class ManagerScene : MonoBehaviour {
     public void NovoGame(string cena)
     {
         nomeCena = cena;
-        StartCoroutine(AbrirCena());
+        //StartCoroutine(AbrirCena());
         DelleteAll.DeleteAll();
+        AbrirCena();
     }
 
     public void NextFase(string cena)
     {
         nomeCena = cena;
         salvar.Saves();
-        StartCoroutine(AbrirCena());
+        //StartCoroutine(AbrirCena());
+        AbrirCena();
     }
 
     //Obter qual a sena jogada no momento e verificar seu modo de jogo.
