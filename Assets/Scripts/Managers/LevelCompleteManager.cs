@@ -28,6 +28,7 @@ public class LevelCompleteManager : MonoBehaviour {
         //Verifica se a fase terminou
         if (waveDetails.wave.finish)
         {
+            print("Entrou");
             StartCoroutine(Espera());
             levelComplete = true;
             restartTime += Time.deltaTime;

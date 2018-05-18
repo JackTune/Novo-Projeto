@@ -19,7 +19,6 @@ public class ManagerScene : MonoBehaviour {
     }
     public void ChangeScene (string cena){
 		nomeCena = cena;
-        salvar.Saves();
 		StartCoroutine (AbrirCena());
 	}
     
@@ -38,6 +37,13 @@ public class ManagerScene : MonoBehaviour {
         nomeCena = cena;
         StartCoroutine(AbrirCena());
         DelleteAll.DeleteAll();
+    }
+
+    public void NextFase(string cena)
+    {
+        nomeCena = cena;
+        salvar.Saves();
+        StartCoroutine(AbrirCena());
     }
 
     //Obter qual a sena jogada no momento e verificar seu modo de jogo.
