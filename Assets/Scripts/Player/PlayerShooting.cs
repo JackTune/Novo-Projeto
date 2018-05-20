@@ -9,6 +9,7 @@ public class PlayerShooting : MonoBehaviour {
     //Variables Gun
     public float damagePerShot = 20;
     public float TimeBetweenBullets = 2f;
+    public bool canFire = true;
 
     PlayerHealth playerHealth;
 
@@ -52,7 +53,7 @@ public class PlayerShooting : MonoBehaviour {
         timer += Time.deltaTime;
 
         //Verifica se pode atirar
-        if(Input.GetButton ("Fire1") && timer >= TimeBetweenBullets && playerHealth.currentHealth > 0)
+        if(Input.GetButton ("Fire1") && timer >= TimeBetweenBullets && playerHealth.currentHealth > 0 && canFire)
         {
             Shoot();
         }

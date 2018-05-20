@@ -9,6 +9,7 @@ TagManager:
   - StormIce
   - BlackHole
   - Canvas
+  - Ultimate
   layers:
   - Default
   - TransparentFX

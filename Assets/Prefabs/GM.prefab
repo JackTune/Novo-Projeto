@@ -54,37 +54,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7832ac93b79656241949fdde35b773e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillFreeze:
+    nome: 
+    particleSkill: {fileID: 0}
+    colliderSkill: {fileID: 0}
+    imageSkill: {fileID: 0}
+    timeForActiveSkill: 10
+    damageSkill: 10
+    costManaSkill: 20
+  skillStormIce:
+    nome: 
+    particleSkill: {fileID: 0}
+    colliderSkill: {fileID: 0}
+    imageSkill: {fileID: 0}
+    timeForActiveSkill: 15
+    damageSkill: 20
+    costManaSkill: 30
+  skillBlackHole:
+    nome: 
+    particleSkill: {fileID: 0}
+    colliderSkill: {fileID: 0}
+    imageSkill: {fileID: 0}
+    timeForActiveSkill: 25
+    damageSkill: 40
+    costManaSkill: 50
+  animBlackHole: {fileID: 0}
+  skillLaserIce:
+    nome: 
+    particleSkill: {fileID: 0}
+    colliderSkill: {fileID: 0}
+    imageSkill: {fileID: 0}
+    timeForActiveSkill: 3
+    damageSkill: 5
+    costManaSkill: 5
+  colliderLaserIce: {fileID: 0}
   qntAddBuff: 50
   qntForActiveFury: 15
   timeOfFury: 10
   furyImage: {fileID: 0}
   particleFury: {fileID: 0}
-  particleIceExplosion: {fileID: 0}
-  IceExplosionColider: {fileID: 0}
-  imageSkillFreeze: {fileID: 0}
-  timeForActiveSkillFreeze: 10
-  damageFreeze: 10
-  costManaFreeze: 20
-  particleStormIce: {fileID: 0}
-  StormIceColider: {fileID: 0}
-  imageSkillStormIce: {fileID: 0}
-  timeForActiveSkillStormIce: 15
-  damageStormIce: 10
-  costManaStormIce: 30
-  particleBlackHole: {fileID: 0}
-  blackHoleColider: {fileID: 0}
-  imageSkillBlackHole: {fileID: 0}
-  timeForActiveBlackHole: 20
-  damageBlackHole: 10
-  animBlackHole: {fileID: 0}
-  costManaBlackHole: 70
 --- !u!114 &114268406397219834
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887750717963898}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64c1ba1d336475b458629ac7f33b6829, type: 3}
   m_Name: 

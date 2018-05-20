@@ -5,9 +5,40 @@ using UnityEngine.UI;
 
 public class Skills : MonoBehaviour {
 
+    [System.Serializable]
+    public class ClassSkills
+    {
+        public string nome;
+        public ParticleSystem particleSkill;
+        public SphereCollider colliderSkill;
+        public Image imageSkill;
+        public Text timeForActiveSkillText;
+        public float timeForActiveSkill;
+        public int damageSkill;
+        [System.NonSerialized]
+        public float auxTimeForActiveSkill;
+        [System.NonSerialized]
+        public bool canUseSkill;
+        public float costManaSkill;
+    }
+
+    public ClassSkills skillFreeze = new ClassSkills();
+    public ClassSkills skillStormIce = new ClassSkills();
+    public ClassSkills skillBlackHole = new ClassSkills();
+    public Animator animBlackHole;
+    public ClassSkills skillLaserIce = new ClassSkills();
+    public BoxCollider colliderLaserIce;
+    float timeLostManaLaserIce;
+    [System.NonSerialized]
+    public bool ativouSkillLaserIce = false;
+    float timer;
+
     //variáveis
     Color color;
     GameObject player;
+    PlayerShooting playerShooting;
+    PlayerController playerMovement;
+    float auxSpeed;
     EnemyHealth enemyHealth;
     Mana mana;
     GameObject gm;
@@ -30,53 +61,7 @@ public class Skills : MonoBehaviour {
     bool canUseFury;
     public Image furyImage;
     public ParticleSystem particleFury;
-    PlayerShooting playerShooting;
-
-    [Space(10)]
-
-    [Header("FreezeSkill")]
-    [Space(5)]
-    //Variáveis da Skill Freeze
-    public ParticleSystem particleIceExplosion;
-    public SphereCollider IceExplosionColider;
-    public Image imageSkillFreeze;
-    float auxTimeForActiveSkillFreeze;
-    public float timeForActiveSkillFreeze;
-    bool canUseFreeze = false;
-    public int damageFreeze;
-    public float costManaFreeze;
-
-    [Space(10)]
-
-    [Header("StormIceSkill")]
-    [Space(5)]
-
-    //Variáveis da Skill StormIce
-    public ParticleSystem particleStormIce;
-    public SphereCollider StormIceColider;
-    public Image imageSkillStormIce;
-    public float timeForActiveSkillStormIce;
-    public int damageStormIce;
-    float auxTimeForActiveSkillStormIce;
-    bool canUseStormIce;
-    public float costManaStormIce;
-
-    [Space(10)]
-
-    [Header("BlackHoleSkill")]
-    [Space(5)]
-
-    //Variáveis da Skill BlackHole
-    public ParticleSystem particleBlackHole;
-    public SphereCollider blackHoleColider;
-    public Image imageSkillBlackHole;
-    public float timeForActiveBlackHole;
-    public int damageBlackHole;
-    public Animator animBlackHole;
-    float auxTimeForActiveSkillBlackHole;
-    bool canUseBlackHole;
-    public float costManaBlackHole;
-
+    
     
     //Variáveis de pegar a posição do mouse
     Ray camRay;
@@ -94,12 +79,16 @@ public class Skills : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         mana = player.GetComponent<Mana>();
         playerShooting = player.GetComponentInChildren<PlayerShooting>();
-       
+        playerMovement = player.GetComponent<PlayerController>();
+        
     }
+
 
 
     // Use this for initialization
     void Start () {
+        auxSpeed = playerMovement.speed;
+
         //Utilitários da Fury
         consumeFury = timeOfFury;
         currentForActiveFury = 0;
@@ -107,17 +96,25 @@ public class Skills : MonoBehaviour {
         //Uma layer, na qual serve para identificar a posição do mouse
         floorMask = LayerMask.GetMask("Floor");
         //Autorizado a usar as skills
-        canUseFreeze = true;
-        canUseStormIce = true;
-        canUseBlackHole = true;
+        skillFreeze.canUseSkill = true;
+        skillStormIce.canUseSkill = true;
+        skillBlackHole.canUseSkill = true;
+        skillLaserIce.canUseSkill = true;
         //Desabilitar os colliders das skills
-        IceExplosionColider.enabled = false;
-        StormIceColider.enabled = false;
-        blackHoleColider.enabled = false;
-        auxTimeForActiveSkillFreeze = 0;
-        auxTimeForActiveSkillStormIce = 0;
-        auxTimeForActiveSkillBlackHole = 0;
-	}
+        skillFreeze.colliderSkill.enabled = false;
+        skillStormIce.colliderSkill.enabled = false;
+        skillBlackHole.colliderSkill.enabled = false;
+        colliderLaserIce.enabled = false;
+
+        skillFreeze.auxTimeForActiveSkill = skillFreeze.timeForActiveSkill;
+        DesativeOrActiveTimeSkills(skillFreeze, false);
+        skillStormIce.auxTimeForActiveSkill = skillStormIce.timeForActiveSkill;
+        DesativeOrActiveTimeSkills(skillStormIce, false);
+        skillBlackHole.auxTimeForActiveSkill = skillBlackHole.timeForActiveSkill;
+        DesativeOrActiveTimeSkills(skillBlackHole, false);
+        skillLaserIce.auxTimeForActiveSkill = skillLaserIce.timeForActiveSkill;
+        DesativeOrActiveTimeSkills(skillLaserIce, false);
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate ()
@@ -133,35 +130,52 @@ public class Skills : MonoBehaviour {
     IEnumerator StartSkillFreeze()
     {
         
-        yield return new WaitForSeconds(timeForActiveSkillFreeze);
-        canUseFreeze = true;
+        yield return new WaitForSeconds(skillFreeze.timeForActiveSkill);
+        skillFreeze.canUseSkill = true;
+        skillFreeze.auxTimeForActiveSkill = skillFreeze.timeForActiveSkill;
+        DesativeOrActiveTimeSkills(skillFreeze, false);
     }
 
     IEnumerator StartSkillStormIce()
     {
-        yield return new WaitForSeconds(timeForActiveSkillStormIce);
-        canUseStormIce = true;
+        yield return new WaitForSeconds(skillStormIce.timeForActiveSkill);
+        skillStormIce.canUseSkill = true;
+        skillStormIce.auxTimeForActiveSkill = skillStormIce.timeForActiveSkill;
+        DesativeOrActiveTimeSkills(skillStormIce, false);
     }
 
     IEnumerator StartSkillBlackHole()
     {
-        yield return new WaitForSeconds(timeForActiveBlackHole);
-        canUseBlackHole = true;
+        yield return new WaitForSeconds(skillBlackHole.timeForActiveSkill);
+        skillBlackHole.canUseSkill = true;
+        skillBlackHole.auxTimeForActiveSkill = skillBlackHole.timeForActiveSkill;
+        DesativeOrActiveTimeSkills(skillBlackHole, false);
+    }
+
+    IEnumerator StartSkillLaserIce()
+    {
+        yield return new WaitForSeconds(skillLaserIce.timeForActiveSkill);
+        print("Entrou na coroutine");
+        skillLaserIce.canUseSkill = true;
+        ativouSkillLaserIce = false;
+        skillLaserIce.auxTimeForActiveSkill = skillLaserIce.timeForActiveSkill;
+        DesativeOrActiveTimeSkills(skillLaserIce, false);
+
     }
 
     // Tempo para desativar os coliders
     IEnumerator DesativeCollidersFreeze()
     {
         yield return new WaitForSeconds(0.1f);
-        IceExplosionColider.enabled = false;
-        particleIceExplosion.Stop();
+        skillFreeze.colliderSkill.enabled = false;
+        skillFreeze.particleSkill.Stop();
     }
 
     IEnumerator DesativeColiderStormIce()
     {
         yield return new WaitForSeconds(3.1f);
-        StormIceColider.enabled = false;
-        particleStormIce.Stop();
+        skillStormIce.colliderSkill.enabled = false;
+        skillStormIce.particleSkill.Stop();
        
     }
 
@@ -169,10 +183,14 @@ public class Skills : MonoBehaviour {
     {
         yield return new WaitForSeconds(5f);
         animBlackHole.SetBool("ActiveBlackHole", false);
-        blackHoleColider.enabled = false;
-        particleBlackHole.Stop();
+        skillBlackHole.colliderSkill.enabled = false;
+        skillBlackHole.particleSkill.Stop();
     }
 
+    void DesativeOrActiveTimeSkills(ClassSkills skill, bool setGameObject)
+    {
+        skill.timeForActiveSkillText.gameObject.SetActive(setGameObject);
+    }
 
     /*Métodos da Mana*/
 
@@ -187,31 +205,40 @@ public class Skills : MonoBehaviour {
     //Seta as imagens dependendo de qual skill o player não puder usar
     void SetImagesSkills()
     {
-        if (mana.currentMana < costManaFreeze)
+        if (mana.currentMana < skillFreeze.costManaSkill)
         {
-            AlertMana(imageSkillFreeze, 0);
+            AlertMana(skillFreeze.imageSkill, 0);
         }
         else
         {
-            AlertMana(imageSkillFreeze, 255);
+            AlertMana(skillFreeze.imageSkill, 255);
         }
 
-        if (mana.currentMana < costManaStormIce)
+        if (mana.currentMana < skillStormIce.costManaSkill)
         {
-            AlertMana(imageSkillStormIce, 0);
+            AlertMana(skillStormIce.imageSkill, 0);
         }
         else
         {
-            AlertMana(imageSkillStormIce, 255);
+            AlertMana(skillStormIce.imageSkill, 255);
         }
 
-        if (mana.currentMana < costManaBlackHole)
+        if (mana.currentMana < skillBlackHole.costManaSkill)
         {
-            AlertMana(imageSkillBlackHole, 0);
+            AlertMana(skillBlackHole.imageSkill, 0);
         }
         else
         {
-            AlertMana(imageSkillBlackHole, 255);
+            AlertMana(skillBlackHole.imageSkill, 255);
+        }
+
+        if(mana.currentMana < skillLaserIce.costManaSkill)
+        {
+            AlertMana(skillLaserIce.imageSkill, 0);
+        }
+        else
+        {
+            AlertMana(skillLaserIce.imageSkill, 255);
         }
     }
 
@@ -221,33 +248,34 @@ public class Skills : MonoBehaviour {
 
 
         // condição de poder usar o congelar e se usar as coisas que acontecem
-        if (Input.GetKeyDown(KeyCode.Space) && canUseFreeze == true && mana.currentMana >= costManaFreeze)
+        if (Input.GetKeyDown(KeyCode.Space) && skillFreeze.canUseSkill == true && mana.currentMana >= skillFreeze.costManaSkill)
         {
 
-            auxTimeForActiveSkillFreeze = 0;
-            imageSkillFreeze.fillAmount = 0;
-            mana.GastarMana(costManaFreeze);
-            canUseFreeze = false;
-            particleIceExplosion.Play();
-            IceExplosionColider.enabled = true;
+            mana.GastarMana(skillFreeze.costManaSkill);
+            skillFreeze.canUseSkill = false;
+            skillFreeze.particleSkill.Play();
+            skillFreeze.colliderSkill.enabled = true;
             StartCoroutine(DesativeCollidersFreeze());
             StartCoroutine(StartSkillFreeze());
 
         }
-        else if (canUseFreeze == false) // Carregaremnto da skill
+        else if (skillFreeze.canUseSkill == false) // Carregaremnto da skill
         {
-            auxTimeForActiveSkillFreeze += Time.deltaTime;
-            imageSkillFreeze.fillAmount = auxTimeForActiveSkillFreeze / timeForActiveSkillFreeze;
+            if (ativouSkillLaserIce == false)
+            {
+                skillFreeze.auxTimeForActiveSkill -= Time.deltaTime;
+                skillFreeze.timeForActiveSkillText.text = ((int)skillFreeze.auxTimeForActiveSkill).ToString();
+                DesativeOrActiveTimeSkills(skillFreeze, true);
+            }
+            // skillFreeze.imageSkill.fillAmount = skillFreeze.auxTimeForActiveSkill / skillFreeze.timeForActiveSkill;
 
         }
 
         // condição de poder usar a tempestade e se usar as coisas que acontecem
-        if (Input.GetKeyDown(KeyCode.E) && canUseStormIce == true && mana.currentMana >= costManaStormIce)
+        if (Input.GetKeyDown(KeyCode.E) && skillStormIce.canUseSkill == true && mana.currentMana >= skillStormIce.costManaSkill)
         {
-            auxTimeForActiveSkillStormIce = 0;
-            imageSkillStormIce.fillAmount = 0;
-            mana.GastarMana(costManaStormIce);
-            canUseStormIce = false;
+            mana.GastarMana(skillStormIce.costManaSkill);
+            skillStormIce.canUseSkill = false;
 
             camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             //Captura a posição do mouse
@@ -257,30 +285,32 @@ public class Skills : MonoBehaviour {
             }
             positionMouse.y = 10f;
             //Seta a posição da particula, na posição do mouse
-            particleStormIce.transform.position = positionMouse;
+            skillStormIce.particleSkill.transform.position = positionMouse;
 
             //Inicia a particula e seu collider
-            particleStormIce.Play();
-            StormIceColider.enabled = true;
+            skillStormIce.particleSkill.Play();
+            skillStormIce.colliderSkill.enabled = true;
 
             StartCoroutine(StartSkillStormIce());
             StartCoroutine(DesativeColiderStormIce());
         }
-        else if (canUseStormIce == false) // Carregaremnto da skill
+        else if (skillStormIce.canUseSkill == false) // Carregaremnto da skill
         {
-            auxTimeForActiveSkillStormIce += Time.deltaTime;
-            imageSkillStormIce.fillAmount = auxTimeForActiveSkillStormIce / timeForActiveSkillStormIce;
-
+            if (ativouSkillLaserIce == false)
+            {
+                skillStormIce.auxTimeForActiveSkill -= Time.deltaTime;
+                skillStormIce.timeForActiveSkillText.text = ((int)skillStormIce.auxTimeForActiveSkill).ToString();
+                DesativeOrActiveTimeSkills(skillStormIce, true);
+            }
         }
 
         // condição de poder usar o buraco negro e se usar as coisas que acontecem
-        if (Input.GetKeyDown(KeyCode.R) && canUseBlackHole == true && mana.currentMana >= costManaBlackHole)
+        if (Input.GetKeyDown(KeyCode.R) && skillBlackHole.canUseSkill == true && mana.currentMana >= skillBlackHole.costManaSkill)
         {
-            auxTimeForActiveSkillBlackHole = 0;
-            imageSkillBlackHole.fillAmount = 0;
-            mana.GastarMana(costManaBlackHole);
+           
+            mana.GastarMana(skillBlackHole.costManaSkill);
             animBlackHole.SetBool("ActiveBlackHole", true);
-            canUseBlackHole = false;
+            skillBlackHole.canUseSkill = false;
 
             camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             //Captura a posição do mouse
@@ -290,23 +320,82 @@ public class Skills : MonoBehaviour {
             }
             positionMouse.y = 1f;
             //Seta a posição da particula, na posição do mouse
-            particleBlackHole.transform.position = positionMouse;
+            skillBlackHole.particleSkill.transform.position = positionMouse;
 
             //Inicia a particula e seu collider
-            particleBlackHole.Play();
-            blackHoleColider.enabled = true;
+            skillBlackHole.particleSkill.Play();
+            skillBlackHole.colliderSkill.enabled = true;
 
 
 
             StartCoroutine(StartSkillBlackHole());
             StartCoroutine(DesativeColiderBlackHole());
         }
-        else if (canUseBlackHole == false) // Carregaremnto da skill
+        else if (skillBlackHole.canUseSkill == false) // Carregaremnto da skill
         {
+            if (ativouSkillLaserIce == false)
+            {
+                skillBlackHole.auxTimeForActiveSkill -= Time.deltaTime;
+                skillBlackHole.timeForActiveSkillText.text = ((int)skillBlackHole.auxTimeForActiveSkill).ToString();
+                DesativeOrActiveTimeSkills(skillBlackHole, true);
+            }
+        }
 
-            auxTimeForActiveSkillBlackHole += Time.deltaTime;
-            imageSkillBlackHole.fillAmount = auxTimeForActiveSkillBlackHole / timeForActiveBlackHole;
 
+        timeLostManaLaserIce += Time.deltaTime;
+        if (Input.GetKey(KeyCode.F) && skillLaserIce.canUseSkill == true && mana.currentMana >= skillLaserIce.costManaSkill)
+        {
+            
+            playerMovement.speed = 0;
+            skillFreeze.canUseSkill = false;
+            skillBlackHole.canUseSkill = false;
+            skillStormIce.canUseSkill = false;
+            playerShooting.canFire = false;
+
+            if(timeLostManaLaserIce >= 1f)
+            {
+                mana.GastarMana(skillLaserIce.costManaSkill);
+                timeLostManaLaserIce = 0;
+            }
+            //
+           // skillLaserIce.canUseSkill = false;
+           if(ativouSkillLaserIce == false)
+            {
+                skillLaserIce.particleSkill.Play();
+                ativouSkillLaserIce = true;
+            }
+            colliderLaserIce.enabled = true;
+
+        }
+        else if(ativouSkillLaserIce)
+        {
+            playerMovement.speed = auxSpeed;
+
+            skillFreeze.canUseSkill = true;
+            skillBlackHole.canUseSkill = true;
+            skillStormIce.canUseSkill = true;
+            playerShooting.canFire = true;
+            skillLaserIce.canUseSkill = false;
+
+            colliderLaserIce.enabled = false;
+            skillLaserIce.particleSkill.Stop();
+            timer += Time.deltaTime;
+            skillLaserIce.auxTimeForActiveSkill -= Time.deltaTime;
+            skillLaserIce.timeForActiveSkillText.text = ((int)skillLaserIce.auxTimeForActiveSkill).ToString();
+            DesativeOrActiveTimeSkills(skillLaserIce, true);
+            ContarLaserIce();
+        }
+    }
+
+    void ContarLaserIce()
+    {
+        if (timer >= skillLaserIce.timeForActiveSkill)
+        {
+            skillLaserIce.canUseSkill = true;
+            ativouSkillLaserIce = false;
+            skillLaserIce.auxTimeForActiveSkill = skillLaserIce.timeForActiveSkill;
+            DesativeOrActiveTimeSkills(skillLaserIce, false);
+            timer = 0;
         }
     }
 
@@ -340,16 +429,16 @@ public class Skills : MonoBehaviour {
 
         auxDamagePlayer = playerShooting.damagePerShot;
         auxTimeBetweenBullets = playerShooting.TimeBetweenBullets;
-        auxBuffForFreeze = timeForActiveSkillFreeze;
-        auxBuffForStormIce = timeForActiveSkillStormIce;
-        auxBuffForBlackHole = timeForActiveBlackHole;
+        auxBuffForFreeze = skillFreeze.timeForActiveSkill;
+        auxBuffForStormIce = skillStormIce.timeForActiveSkill;
+        auxBuffForBlackHole = skillBlackHole.timeForActiveSkill;
         auxMana = mana.manaGainForSecond;
 
         playerShooting.damagePerShot += playerShooting.damagePerShot * addBuff;
         playerShooting.TimeBetweenBullets -= playerShooting.TimeBetweenBullets * addBuff;
-        timeForActiveSkillFreeze -= timeForActiveSkillFreeze * addBuff;
-        timeForActiveSkillStormIce -= timeForActiveSkillStormIce * addBuff;
-        timeForActiveBlackHole -= timeForActiveBlackHole * addBuff;
+        skillFreeze.timeForActiveSkill -= skillFreeze.timeForActiveSkill * addBuff;
+        skillStormIce.timeForActiveSkill -= skillStormIce.timeForActiveSkill * addBuff;
+        skillBlackHole.timeForActiveSkill -= skillBlackHole.timeForActiveSkill * addBuff;
         mana.manaGainForSecond *= 2;
 
     }
@@ -362,9 +451,9 @@ public class Skills : MonoBehaviour {
 
         playerShooting.damagePerShot = auxDamagePlayer;
         playerShooting.TimeBetweenBullets = auxTimeBetweenBullets;
-        timeForActiveSkillFreeze = auxBuffForFreeze;
-        timeForActiveSkillStormIce = auxBuffForStormIce;
-        timeForActiveBlackHole = auxBuffForBlackHole;
+        skillFreeze.timeForActiveSkill = auxBuffForFreeze;
+        skillStormIce.timeForActiveSkill = auxBuffForStormIce;
+        skillBlackHole.timeForActiveSkill = auxBuffForBlackHole;
         mana.manaGainForSecond = auxMana;
         consumeFury = timeOfFury;
     }

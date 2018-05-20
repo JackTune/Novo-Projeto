@@ -22,6 +22,8 @@ public class EnemyMovement : MonoBehaviour {
     float startSpeed;
     bool entrouNoColliderStormIce = true;
     bool entrouNoColliderBlackHole = true;
+    bool colidiuUltimateIce = true;
+    float time;
     
 
     // Use this for initialization
@@ -42,7 +44,6 @@ public class EnemyMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
         //Verifica se o player e o inimigo estão vivos, para assim o inimigo seguir o Player
         if (playerHealth.currentHealth > 0 && enemyHealth.currentHealth > 0)
         {
@@ -78,6 +79,12 @@ public class EnemyMovement : MonoBehaviour {
             StartCoroutine(Congelar(timeOfFreeze));
         }
 
+        if (other.CompareTag("Ultimate"))
+        {
+            colidiuUltimateIce = true;
+            StartCoroutine(Ultimate());
+        }
+
     }
 
   
@@ -87,7 +94,7 @@ public class EnemyMovement : MonoBehaviour {
     IEnumerator Congelar(int time)
     {
         enemyAttack.attackDamage = 0;
-        enemyHealth.TakeDamage(skills.damageFreeze);
+        enemyHealth.TakeDamage(skills.skillFreeze.damageSkill);
         nav.speed = 0;
         yield return new WaitForSeconds(time);
         enemyAttack.attackDamage = enemyAttack.startDamage;
@@ -102,7 +109,7 @@ public class EnemyMovement : MonoBehaviour {
         for (int i = 0; i < 3; i++)
         {
 
-            enemyHealth.TakeDamage(skills.damageStormIce);
+            enemyHealth.TakeDamage(skills.skillStormIce.damageSkill);
             yield return new WaitForSeconds(1.1f);
         }
         yield return new WaitForSeconds(1f);
@@ -119,7 +126,7 @@ public class EnemyMovement : MonoBehaviour {
         for (int i = 0; i < 5; i++)
         {
 
-            enemyHealth.TakeDamage(skills.damageBlackHole);
+            enemyHealth.TakeDamage(skills.skillBlackHole.damageSkill);
             yield return new WaitForSeconds(1.1f);
         }
         yield return new WaitForSeconds(1f);
@@ -127,4 +134,39 @@ public class EnemyMovement : MonoBehaviour {
         entrouNoColliderBlackHole = true;
 
     }
+
+    IEnumerator Ultimate()
+    {
+
+        //nav.speed = startSpeed * 0.2f;
+        for (int i = 0; i < 20; i++)
+        {
+            if(skills.skillLaserIce.canUseSkill) {
+                enemyHealth.TakeDamage(skills.skillLaserIce.damageSkill);
+                yield return new WaitForSeconds(1.1f);
+            }
+        }
+        yield return new WaitForSeconds(1f);
+        //nav.speed = startSpeed;
+        //entrouNoColliderBlackHole = true;
+        
+
+       /* if (colidiuUltimateIce)
+        {
+            enemyHealth.TakeDamage(skills.skillLaserIce.damageSkill);
+            yield return new WaitForSeconds(1f);
+        }*/
+    }
+
+
+    /*void UltimateParticle()
+    {
+        
+        
+        print(countTimeDamageUltimate);
+        if(countTimeDamageUltimate >= 1f)
+        {
+            enemyHealth.TakeDamage(skills.skillLaserIce.damageSkill);
+        }
+    }*/
 }

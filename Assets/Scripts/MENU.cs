@@ -7,7 +7,7 @@ using System.Linq;
 
 public class MENU : MonoBehaviour
 {
-    public Button buttonStart, buttonOptions, buttonQuit;
+    public Button buttonStart, buttonOptions, buttonQuit, buttonContinue;
     public GameObject options, gamesMode;
 
 
@@ -52,6 +52,7 @@ public class MENU : MonoBehaviour
         buttonStart.gameObject.SetActive(boolean);
         buttonOptions.gameObject.SetActive(boolean);
         buttonQuit.gameObject.SetActive(boolean);
+        buttonContinue.gameObject.SetActive(boolean);
     }
 
     public void Quit()

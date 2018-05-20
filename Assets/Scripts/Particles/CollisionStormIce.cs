@@ -25,7 +25,7 @@ public class CollisionStormIce : MonoBehaviour {
             //Caso Exista um enemyHealth naquele objeto
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(skills.damageStormIce);
+                enemyHealth.TakeDamage(skills.skillStormIce.damageSkill);
             }
         }
     }

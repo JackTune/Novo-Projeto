@@ -19,7 +19,6 @@ public class ManagerScene : MonoBehaviour {
     }
     public void ChangeScene (string cena){
 		nomeCena = cena;
-        //StartCoroutine (AbrirCena());
         AbrirCena();
     }
     
@@ -36,7 +35,6 @@ public class ManagerScene : MonoBehaviour {
     public void NovoGame(string cena)
     {
         nomeCena = cena;
-        //StartCoroutine(AbrirCena());
         DelleteAll.DeleteAll();
         AbrirCena();
     }

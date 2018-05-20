@@ -10,7 +10,7 @@ public class Mana : MonoBehaviour {
     public float currentMana;
     public Image manaImage;
     public float manaGainForSecond = 1f;
-    float countRealTime;
+    public float countRealTime;
 
     PotionsScript playerPotions;
 
@@ -41,7 +41,6 @@ public class Mana : MonoBehaviour {
     public void GastarMana(float amount)
     {
         currentMana -= amount;
-
         manaImage.fillAmount = currentMana / startMana;
     }
 
